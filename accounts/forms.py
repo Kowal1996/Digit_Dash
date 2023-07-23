@@ -7,7 +7,7 @@ class MyRegistrationForm(UserCreationForm):
     birth_date = forms.DateField()
     country = forms.CharField()
     account_balance = forms.DecimalField()
-    creation_date = forms.DateField(auto_now_add=True)
+    
 
     class Meta:
         model = User
