@@ -6,8 +6,8 @@ from django.contrib.auth.models import User
 class Profile(models.Model):
     city = models.CharField(max_length=200)
     pictures = models.ImageField(upload_to='profilePics', default='blankUser.png')
-    name = models.CharField(max_length=200)
-    surname = models.CharField(max_length=200)
+    name = models.CharField(max_length=50)
+    surname = models.CharField(max_length=100)
     owner = models.OneToOneField(User,on_delete=models.CASCADE) # Creating many to many relationship with User model
 
     def __str__(self):
