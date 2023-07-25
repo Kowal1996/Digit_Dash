@@ -8,5 +8,6 @@ def home(request):
 
 def register(request):
     if request.method == 'GET':
-        form = MyRegistrationForm()
-        return render(request, 'register.html', {'form': form})
+        userForm = MyRegistrationForm()
+        profileForm = ProfileForm()
+        return render(request, 'register.html', {'userForm': userForm, 'profileForm': profileForm})
