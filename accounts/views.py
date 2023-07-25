@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .forms import MyRegistrationForm
+from .forms import MyRegistrationForm, ProfileForm
 # Create your views here.
 
 
