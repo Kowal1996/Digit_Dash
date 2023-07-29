@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .forms import MyRegistrationForm
+from .forms import MyRegistrationForm, ProfileForm
 # Create your views here.
 
 
@@ -8,5 +8,6 @@ def home(request):
 
 def register(request):
     if request.method == 'GET':
-        form = MyRegistrationForm()
-        return render(request, 'register.html', {'form': form})
+        userForm = MyRegistrationForm()
+        profileForm = ProfileForm()
+        return render(request, 'register.html', {'userForm': userForm, 'profileForm': profileForm})
