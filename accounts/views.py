@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import MyRegistrationForm, ProfileForm
 import re
 from django.contrib.auth.models import User
 from django.contrib.auth.password_validation import validate_password 
 from django.core.exceptions import ValidationError
+from verify_email.email_handler import send_verification_email
 # Create your views here.
 
 def validate_email(email):
@@ -50,9 +51,9 @@ def register(request):
         password1 = request.POST.get('password1')
         password2 = request.POST.get('password2')
         first_name = request.POST.get('first_name')
-        
+        city = request.POST.get('city')
+        country = request.POST.get('country')
 
-        
         if password1 == password2:
             firstNameValid = validate_first_name(first_name)
             if firstNameValid:
@@ -70,12 +71,20 @@ def register(request):
                     else:
                         emailValid = validate_email(email)
                         if emailValid:
-                            user_form = MyRegistrationForm(request.POST)
-                            return user_form
+                            userForm = MyRegistrationForm(request.POST)
+                            cityValid = validate_city(city)
+                            countryValid = validate_country(country)
+                            if cityValid and countryValid:
+                                profileForm = ProfileForm(request.POST, request.FILES)
+                                if userForm.is_valid() and profileForm.is_valid():
+                                    inactive_user = send_verification_email(request, userForm)
+                                    return render(request, 'register.html', {'userForm': userForm, 'profileForm': profileForm})
+                            else:
+                                 error = 'Country or City is not valid'
                         else:
                             error = 'Email is not valid'
             else:
                 error = 'Name is invalid'                
         else:
             error = 'Passwords did not match'   
-        return render(request, 'register.html', {'userForm': userForm, 'profileForm': profileForm, 'error': error})
+            return render(request, 'register.html', {'userForm': userForm, 'profileForm': profileForm, 'error': error})
