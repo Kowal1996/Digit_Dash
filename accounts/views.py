@@ -46,6 +46,8 @@ def register(request):
         profileForm = ProfileForm()
         return render(request, 'register.html', {'userForm': userForm, 'profileForm': profileForm})
     else:
+        userForm = MyRegistrationForm()
+        profileForm = ProfileForm()
         username = request.POST.get('username')
         email = request.POST.get('email')
         password1 = request.POST.get('password1')
@@ -63,28 +65,31 @@ def register(request):
                     error = 'Username is already taken'
                 if emailTaken:
                     error = 'Email is already taken'
-                if not usernameTaken and not emailTaken:
-                    try:
-                        validate_password(password1)
-                    except ValidationError as e:
-                        return render(request, 'register.html', {'userForm': userForm, 'profileForm': profileForm, 'passwordError': e.messages})    
-                    else:
-                        emailValid = validate_email(email)
-                        if emailValid:
-                            userForm = MyRegistrationForm(request.POST)
-                            cityValid = validate_city(city)
-                            countryValid = validate_country(country)
-                            if cityValid and countryValid:
-                                profileForm = ProfileForm(request.POST, request.FILES)
-                                if userForm.is_valid() and profileForm.is_valid():
-                                    inactive_user = send_verification_email(request, userForm)
-                                    return render(request, 'register.html', {'userForm': userForm, 'profileForm': profileForm})
-                            else:
-                                 error = 'Country or City is not valid'
+                    if not usernameTaken and not emailTaken:
+                        try:
+                            validate_password(password1)
+                        except ValidationError as e:
+                            return render(request, 'register.html', {'userForm': userForm, 'profileForm': profileForm, 'passwordError': e.messages})    
                         else:
-                            error = 'Email is not valid'
+                            emailValid = validate_email(email)
+                            if emailValid:
+                                userForm = MyRegistrationForm(request.POST)
+                                cityValid = validate_city(city)
+                                if cityValid:
+                                    countryValid = validate_country(country)
+                                    if countryValid:
+                                        profileForm = ProfileForm(request.POST, request.FILES)
+                                        if userForm.is_valid() and profileForm.is_valid():
+                                            inactive_user = send_verification_email(request, userForm)
+                                            return redirect('home')
+                                    else:
+                                        error = 'Country is not valid'
+                                else:
+                                    error = 'City is not valid'
+                            else:
+                                error = 'Email is not valid'
             else:
                 error = 'Name is invalid'                
         else:
             error = 'Passwords did not match'   
-            return render(request, 'register.html', {'userForm': userForm, 'profileForm': profileForm, 'error': error})
+        return render(request, 'register.html', {'userForm': userForm, 'profileForm': profileForm, 'error': error})
