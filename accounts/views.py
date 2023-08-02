@@ -12,6 +12,28 @@ def validate_email(email):
         return True
     else:
         return False
+    
+def validate_first_name(first_name):
+    regex = r'\b[A-Z][a-zA-Z]{0,49}\b'
+    if re.fullmatch(regex,first_name):
+        return True
+    else:
+        return False
+    
+def validate_city(city):
+    regex = r'\b[A-Z][a-zA-Z]{0,100}\b'
+    if re.fullmatch(regex,city):
+        return True
+    else:
+        return False
+    
+
+def validate_country(country):
+    regex = r'\b[A-Z][a-zA-Z]{0,100}\b'
+    if re.fullmatch(regex,country):
+        return True
+    else:
+        return False
 
 
 def home(request):
@@ -27,25 +49,33 @@ def register(request):
         email = request.POST.get('email')
         password1 = request.POST.get('password1')
         password2 = request.POST.get('password2')
+        first_name = request.POST.get('first_name')
+        
+
         
         if password1 == password2:
-            usernameTaken = User.objects.filter(username=username).exists()
-            emailTaken = User.objects.filter(email=email).exists()
-            if usernameTaken:
-                error = 'Username is already taken'
-            if emailTaken:
-                error = 'Email is already taken'
-            if not usernameTaken and not emailTaken:
-                try:
-                    validate_password(password1)
-                except ValidationError as e:
-                    return render(request, 'register.html', {'userForm': userForm, 'profileForm': profileForm, 'passwordError': e.messages})    
-                else:
-                    emailValid = validate_email(email)
-                    if emailValid:
-                        pass
+            firstNameValid = validate_first_name(first_name)
+            if firstNameValid:
+                usernameTaken = User.objects.filter(username=username).exists()
+                emailTaken = User.objects.filter(email=email).exists()
+                if usernameTaken:
+                    error = 'Username is already taken'
+                if emailTaken:
+                    error = 'Email is already taken'
+                if not usernameTaken and not emailTaken:
+                    try:
+                        validate_password(password1)
+                    except ValidationError as e:
+                        return render(request, 'register.html', {'userForm': userForm, 'profileForm': profileForm, 'passwordError': e.messages})    
                     else:
-                        error = 'Email is not valid'
+                        emailValid = validate_email(email)
+                        if emailValid:
+                            user_form = MyRegistrationForm(request.POST)
+                            return user_form
+                        else:
+                            error = 'Email is not valid'
+            else:
+                error = 'Name is invalid'                
         else:
-            error = 'Passwords did not match'
+            error = 'Passwords did not match'   
         return render(request, 'register.html', {'userForm': userForm, 'profileForm': profileForm, 'error': error})
