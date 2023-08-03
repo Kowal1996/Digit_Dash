@@ -1,23 +1,24 @@
 {% extends 'base.html' %}
+
 {% block content %}
-    {% if passwordError %}
-        <h3>Błąd walidacji hasła</h3>
-        <ul>
-            {% for message in passwordError %}
-                <li>{{message}}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+{% if passwordError %}
+    <h3>Błąd walidacji hasła</h3>
+    <ul>
+        {% for message in passwordError %}
+            <li>{{message}}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
 
 
-    {% if error %}
-        <h3>{{error}}</h3>
-    {% endif %}
+{% if error %}
+    <h3>{{error}}</h3>
+{% endif %}
 
-    <form action="{% url 'register' %}" method="post" enctype="multipart/form-data">
-        {{userForm}}
-        {{profileForm}}
-        {% csrf_token %}
-        <button type="submit">Register!</button>
-    </form>
+<form action="{% url 'register' %}" method="post" enctype="multipart/form-data">
+    {{userForm}}
+    {{profileForm}}
+    {% csrf_token %}
+    <button type="submit">Register!</button>
+</form>
 {% endblock content %}
