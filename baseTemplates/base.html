@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+        Digit dash
+        {% endblock title %}
+    </title>
+</head>
+<body>
+    <a href="{% url 'home' %}">Home</a>
+    {% if user.is_authenticated %}
+        <a href="{% url 'logoutUser' %}">Logout</a>
+        <a href="{% url 'profileInformation' %}">Your Profile</a>
+    {% else %}
+        <a href="{% url 'register' %}">Registration</a>
+        <a href="{% url 'loginUser' %}">Login</a>
+    {% endif %}
+
+</body>
+</html>
