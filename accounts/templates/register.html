@@ -20,10 +20,10 @@
         <h3>{{error}}</h3>
     {% endif %}
 
-    <form action="{% url 'register' %}" method="post">
-    {{userForm}}
-    {{profileForm}}
-    {% csrf_token %}
+    <form action="{% url 'register' %}" method="post" enctype="multipart/form-data">
+        {{userForm}}
+        {{profileForm}}
+        {% csrf_token %}
     <button type="submit">Register!</button>
     </form>
 </body>
