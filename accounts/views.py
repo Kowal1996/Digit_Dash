@@ -104,7 +104,7 @@ def register(request):
                                         user_form = MyRegistrationForm(request.POST)
                                         if user_form.is_valid():
                                             inactive_user = send_verification_email(request, user_form)
-                                            profile_form = ProfileForm(request.POST)
+                                            profile_form = ProfileForm(request.POST, request.FILES)
                                             if profile_form.is_valid():
                                                 profile = profile_form.save(commit=False)
                                                 profile.owner = inactive_user
