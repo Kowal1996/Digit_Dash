@@ -1,1 +1,9 @@
 <h1>Main Page</h1>
+
+
+{% if user.is_authenticated %}
+    <a href="{% url 'logoutUser' %}">Logout</a>
+{% else %}
+    <a href="{% url 'register' %}">Registration</a>
+    <a href="{% url 'loginUser' %}">Login</a>
+{% endif %}
