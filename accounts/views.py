@@ -119,7 +119,7 @@ def register(request):
 
 def loginUser(request):
     if request.method == 'GET':
-        return render(request, 'loginUser.hmtl', {'form': AuthenticationForm()})
+        return render(request, 'loginUser.html', {'form': AuthenticationForm()})
     else:
         username = request.POST.get('username')
         password = request.POST.get('password')
