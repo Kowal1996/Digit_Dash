@@ -12,4 +12,4 @@ class Profile(models.Model):
     owner = models.OneToOneField(User,on_delete=models.CASCADE) # Creating many to many relationship with User model
 
     def __str__(self):
-        return f'{self.owner}{self.account_balance}{self.city}{self.country}{self.pictures}'
+        return f'{self.owner}'

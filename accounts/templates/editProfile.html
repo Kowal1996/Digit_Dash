@@ -1,0 +1,22 @@
+<div>
+
+    
+    {% if error %}
+
+        {{error}}
+    
+    {% endif %}
+    
+    
+    {% if profile_info %}
+             
+    <form action="{% url 'editProfile' %}" method="post" enctype="multipart/form-data">
+
+        {{edit_profile_info}}
+        {% csrf_token %}
+        <button type="submit">Save</button>
+    </form>
+
+    {% endif %}
+
+</div>

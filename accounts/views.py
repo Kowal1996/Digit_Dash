@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import MyRegistrationForm, ProfileForm
+from .forms import MyRegistrationForm, ProfileForm, EditProfileForm
 import re
 from django.contrib.auth.models import User
 from django.contrib.auth.password_validation import validate_password 
@@ -141,3 +141,29 @@ def profileInformation(request):
     profile_info = get_object_or_404(Profile, owner=request.user)
     # user_info = get_object_or_404(User, user=request.user)
     return render(request, 'profileInformation.html', {'profile_info': profile_info})
+
+
+def editProfile(request):
+    profile_info = get_object_or_404(Profile, owner=request.user)
+    if request.method == 'GET':
+        edit_profile_info = EditProfileForm(instance=profile_info)
+        return render(request, 'editProfile.html', {'profile_info':profile_info, 'edit_profile_info': edit_profile_info})
+    else:
+        new_coutry = request.POST.get('country')
+        new_city = request.POST.get('city')
+        new_city_valid = validate_city(new_city)
+        if not new_city_valid:
+            error = 'City is not valid'
+        else:
+            new_country_valid = validate_country(new_coutry)
+            if not new_country_valid:
+                error ='Country is not valid'
+            else:
+                edit_profile_info = EditProfileForm(request.POST, request.FILES, instance=profile_info)
+                if edit_profile_info.is_valid():
+                    edit_profile_info.save()
+                    return redirect('profileInformation')
+                else:
+                    error = 'Something gone wrong, try again!'
+        return render(request, 'editProfile.html', {'profile_info':profile_info, 'edit_profile_info': edit_profile_info, 'error': error})
+

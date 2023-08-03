@@ -23,3 +23,9 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ('city', 'country', 'birth_date', 'pictures')
+
+
+class EditProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ('city', 'country', 'pictures')
