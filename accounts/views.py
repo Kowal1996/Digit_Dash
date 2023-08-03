@@ -8,6 +8,7 @@ from verify_email.email_handler import send_verification_email
 from .models import Profile
 from datetime import datetime
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import authenticate, login
 # Create your views here.
 
 def validate_email(email):
@@ -122,4 +123,10 @@ def loginUser(request):
     else:
         username = request.POST.get('username')
         password = request.POST.get('password')
-        user = authenticate
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('home')
+        else:
+            error = 'Wrong username or password'
+            return render(request, 'loginUser.html', {'form': AuthenticationForm(), 'error':error})
