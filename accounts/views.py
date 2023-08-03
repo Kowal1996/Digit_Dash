@@ -6,6 +6,8 @@ from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
 from verify_email.email_handler import send_verification_email
 from .models import Profile
+from datetime import datetime
+from django.contrib.auth.forms import AuthenticationForm
 # Create your views here.
 
 def validate_email(email):
@@ -36,6 +38,15 @@ def validate_country(country):
         return True
     else:
         return False
+    
+
+def validate_age(birth_date):
+    current_date = datetime.now()
+    age = current_date.year - int(birth_date[0:4]) - ((current_date.month, current_date.day)<(int(birth_date[5:7]), int(birth_date[8:10])))
+    if age >= 18:
+        return True
+    else:
+        return False
 
 
 def home(request):
@@ -56,6 +67,7 @@ def register(request):
         first_name = request.POST.get('first_name')
         city = request.POST.get('city')
         country = request.POST.get('country')
+        birth_date = request.POST.get('birth_date')
 
         if password1 == password2:
             firstNameValid = validate_first_name(first_name)
@@ -84,17 +96,30 @@ def register(request):
                                 if not countryValid:
                                     error = 'Country is not valid'
                                 else:
-                                    user_form = MyRegistrationForm(request.POST)
-                                    if user_form.is_valid():
-                                        inactive_user = send_verification_email(request, user_form)
-                                        profile_form = ProfileForm(request.POST)
-                                        if profile_form.is_valid():
-                                            profile = profile_form.save(commit=False)
-                                            profile.owner = inactive_user
-                                            profile.save()
-                                            return redirect('home')                           
+                                    ageValid = validate_age(birth_date)
+                                    if not ageValid:
+                                        error = 'You are too young'
+                                    else:
+                                        user_form = MyRegistrationForm(request.POST)
+                                        if user_form.is_valid():
+                                            inactive_user = send_verification_email(request, user_form)
+                                            profile_form = ProfileForm(request.POST)
+                                            if profile_form.is_valid():
+                                                profile = profile_form.save(commit=False)
+                                                profile.owner = inactive_user
+                                                profile.save()
+                                                return redirect('home')                           
             else:
                 error = 'Name is invalid'                
         else:
             error = 'Passwords did not match'   
         return render(request, 'register.html', {'userForm': userForm, 'profileForm': profileForm, 'error': error})
+    
+
+def loginUser(request):
+    if request.method == 'GET':
+        return render(request, 'loginUser.hmtl', {'form': AuthenticationForm()})
+    else:
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate

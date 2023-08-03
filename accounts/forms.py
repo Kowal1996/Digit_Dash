@@ -2,6 +2,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.contrib.auth.models import User
 from .models import Profile
+from datetime import date
 
 class MyRegistrationForm(UserCreationForm):
     email = forms.EmailField()
@@ -15,6 +16,10 @@ class MyRegistrationForm(UserCreationForm):
 
 
 class ProfileForm(forms.ModelForm):
+    birth_date = forms.DateField(
+        widget=forms.DateInput(attrs={'type': 'date'}),
+        initial=date.today
+    )
     class Meta:
         model = Profile
-        fields = ('city', 'country', 'birth_date')
+        fields = ('city', 'country', 'birth_date', 'pictures')
