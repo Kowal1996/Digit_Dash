@@ -62,7 +62,7 @@ ROOT_URLCONF = 'Digit_dash.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'baseTemplates'], # base dir is a main folder , if base.html deeper that folder baseTemplates , we have to mention about all folders 
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

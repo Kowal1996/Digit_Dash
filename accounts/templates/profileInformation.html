@@ -1,3 +1,5 @@
+{% extends 'base.html' %}
+{% block content %}
 <div>
     <p>Your username</p>
     <p>{{profile_info.owner}}</p>
@@ -10,8 +12,6 @@
     
     <p>Your picture</p>
     <img src="{{profile_info.pictures.url}}" alt="Your Picture">
-
-    
-
-
 </div>
+
+{% endblock content %}
