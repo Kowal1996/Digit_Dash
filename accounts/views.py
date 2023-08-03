@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import MyRegistrationForm, ProfileForm
 import re
 from django.contrib.auth.models import User
@@ -135,3 +135,9 @@ def loginUser(request):
 def logoutUser(request):
     logout(request)
     return render(request, 'home.html')
+
+
+def profileInformation(request):
+    profile_info = get_object_or_404(Profile, owner=request.user)
+    # user_info = get_object_or_404(User, user=request.user)
+    return render(request, 'profileInformation.html', {'profile_info': profile_info})
