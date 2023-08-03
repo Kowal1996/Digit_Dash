@@ -15,14 +15,14 @@ def validate_email(email):
         return False
     
 def validate_first_name(first_name):
-    regex = r'\b[A-Z][a-zA-Z]{0,49}\b'
+    regex = r'\b[A-Z][a-z]{0,49}\b'
     if re.fullmatch(regex,first_name):
         return True
     else:
         return False
     
 def validate_city(city):
-    regex = r'\b[A-Z][a-zA-Z]{0,100}\b'
+    regex = r'\b[A-Z][a-z]{0,100}\b'
     if re.fullmatch(regex,city):
         return True
     else:
@@ -30,7 +30,7 @@ def validate_city(city):
     
 
 def validate_country(country):
-    regex = r'\b[A-Z][a-zA-Z]{0,100}\b'
+    regex = r'\b[A-Z][a-z]{0,100}\b'
     if re.fullmatch(regex,country):
         return True
     else:
@@ -65,29 +65,31 @@ def register(request):
                     error = 'Username is already taken'
                 if emailTaken:
                     error = 'Email is already taken'
-                    if not usernameTaken and not emailTaken:
-                        try:
-                            validate_password(password1)
-                        except ValidationError as e:
-                            return render(request, 'register.html', {'userForm': userForm, 'profileForm': profileForm, 'passwordError': e.messages})    
+                if not usernameTaken and not emailTaken:
+                    try:
+                        validate_password(password1)
+                    except ValidationError as e:
+                        return render(request, 'register.html', {'userForm': userForm, 'profileForm': profileForm, 'passwordError': e.messages})    
+                    else:
+                        emailValid = validate_email(email)
+                        if not emailValid:
+                            error = 'Email is not valid'
                         else:
-                            emailValid = validate_email(email)
-                            if emailValid:
-                                userForm = MyRegistrationForm(request.POST)
-                                cityValid = validate_city(city)
-                                if cityValid:
-                                    countryValid = validate_country(country)
-                                    if countryValid:
-                                        profileForm = ProfileForm(request.POST, request.FILES)
-                                        if userForm.is_valid() and profileForm.is_valid():
-                                            inactive_user = send_verification_email(request, userForm)
-                                            return redirect('home')
-                                    else:
-                                        error = 'Country is not valid'
-                                else:
-                                    error = 'City is not valid'
+                            cityValid = validate_city(city)
+                            if not cityValid:
+                                error = 'City is not valid'
                             else:
-                                error = 'Email is not valid'
+                                countryValid = validate_country(country)
+                                if not countryValid:
+                                    error = 'Country is not valid'
+                                else:
+                                    profile_form = ProfileForm(request.POST, request.FILES)
+                                    user_form = MyRegistrationForm(request.POST)
+                                    if userForm.is_valid() and profileForm.is_valid():
+                                        inactive_user = send_verification_email(request, user_form)
+                                        profile = profile_form.save(commit=False)
+                                        profile.save()
+                                        return redirect('home')                           
             else:
                 error = 'Name is invalid'                
         else:
