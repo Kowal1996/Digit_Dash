@@ -17,4 +17,4 @@ class MyRegistrationForm(UserCreationForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('city', 'country', 'birth_date', 'pictures')
+        fields = ('city', 'country', 'birth_date')

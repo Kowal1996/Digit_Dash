@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.password_validation import validate_password 
 from django.core.exceptions import ValidationError
 from verify_email.email_handler import send_verification_email
+from .models import Profile
 # Create your views here.
 
 def validate_email(email):
@@ -83,13 +84,15 @@ def register(request):
                                 if not countryValid:
                                     error = 'Country is not valid'
                                 else:
-                                    profile_form = ProfileForm(request.POST, request.FILES)
                                     user_form = MyRegistrationForm(request.POST)
-                                    if userForm.is_valid() and profileForm.is_valid():
+                                    if user_form.is_valid():
                                         inactive_user = send_verification_email(request, user_form)
-                                        profile = profile_form.save(commit=False)
-                                        profile.save()
-                                        return redirect('home')                           
+                                        profile_form = ProfileForm(request.POST)
+                                        if profile_form.is_valid():
+                                            profile = profile_form.save(commit=False)
+                                            profile.owner = inactive_user
+                                            profile.save()
+                                            return redirect('home')                           
             else:
                 error = 'Name is invalid'                
         else:
