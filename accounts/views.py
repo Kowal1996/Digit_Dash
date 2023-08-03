@@ -8,7 +8,7 @@ from verify_email.email_handler import send_verification_email
 from .models import Profile
 from datetime import datetime
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 # Create your views here.
 
 def validate_email(email):
@@ -130,3 +130,8 @@ def loginUser(request):
         else:
             error = 'Wrong username or password'
             return render(request, 'loginUser.html', {'form': AuthenticationForm(), 'error':error})
+
+
+def logoutUser(request):
+    logout(request)
+    return render(request, 'home.html')
