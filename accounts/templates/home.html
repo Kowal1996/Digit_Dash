@@ -2,5 +2,8 @@
 {% block content %}
 <h1>Main Page</h1>
 
-
+{% if message %}
+   {{message}} 
+{% endif %}
+    
 {% endblock content %}

@@ -12,6 +12,8 @@
     
     <p>Your picture</p>
     <img src="{{profile_info.pictures.url}}" alt="Your Picture">
+    
+    <p><a href="{% url 'deleteUser' %}">Delete account</a></p>
 </div>
 
 {% endblock content %}
