@@ -134,7 +134,7 @@ def loginUser(request):
 
 def logoutUser(request):
     logout(request)
-    return render(request, 'home.html')
+    return render(request, 'logoutUser.html')
 
 
 def profileInformation(request):
