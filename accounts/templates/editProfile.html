@@ -12,7 +12,7 @@
              
     <form action="{% url 'editProfile' %}" method="post" enctype="multipart/form-data">
 
-        {{edit_profile_info}}
+        {{edit_profile_info.as_p}}
         {% csrf_token %}
         <button type="submit">Save</button>
     </form>
