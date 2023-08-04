@@ -167,3 +167,9 @@ def editProfile(request):
                     error = 'Something gone wrong, try again!'
         return render(request, 'editProfile.html', {'profile_info':profile_info, 'edit_profile_info': edit_profile_info, 'error': error})
 
+
+def deleteUser(request):
+    user = User.objects.filter(username=request.user)
+    user.delete()
+    message = 'Your account was deleted'
+    return render(request, 'home.html', {'message':message})

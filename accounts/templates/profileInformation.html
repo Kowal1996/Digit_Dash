@@ -9,14 +9,11 @@
     <p>{{profile_info.country}}</p>
     <p>Your city</p>
     <p>{{profile_info.city}}</p>
-    
     <p>Your picture</p>
     <img src="{{profile_info.pictures.url}}" alt="Your Picture">
-
-
-
-
     <a href="{% url 'password_change' %}">password change</a>
+
+    <p><a href="{% url 'deleteUser' %}">Delete account</a></p>
 </div>
 
 
