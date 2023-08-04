@@ -9,6 +9,7 @@ from .models import Profile
 from datetime import datetime
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def validate_email(email):
@@ -131,18 +132,18 @@ def loginUser(request):
             error = 'Wrong username or password'
             return render(request, 'loginUser.html', {'form': AuthenticationForm(), 'error':error})
 
-
+@login_required
 def logoutUser(request):
     logout(request)
     return render(request, 'logoutUser.html')
 
-
+@login_required
 def profileInformation(request):
     profile_info = get_object_or_404(Profile, owner=request.user)
     # user_info = get_object_or_404(User, user=request.user)
     return render(request, 'profileInformation.html', {'profile_info': profile_info})
 
-
+@login_required
 def editProfile(request):
     profile_info = get_object_or_404(Profile, owner=request.user)
     if request.method == 'GET':
@@ -167,9 +168,30 @@ def editProfile(request):
                     error = 'Something gone wrong, try again!'
         return render(request, 'editProfile.html', {'profile_info':profile_info, 'edit_profile_info': edit_profile_info, 'error': error})
 
-
+@login_required
 def deleteUser(request):
     user = User.objects.filter(username=request.user)
     user.delete()
     message = 'Your account was deleted'
     return render(request, 'home.html', {'message':message})
+
+@login_required
+def topUpAccountBalance(request):
+    profile = get_object_or_404(Profile, owner= request.user)
+    if request.method == 'POST':
+        try:
+            amount = float(request.POST.get('amount', 0))
+            if amount > 0:
+                
+                profile.account_balance += amount
+                profile.save()
+                return render(request, 'topUpAccountBalance.html', {'amount': amount, 'profile':profile})
+            else:
+                error = "Amount is invalid"
+                return render(request, 'topUpAccountBalance.html', {'amount': amount, 'profile':profile, 'error': error})
+        except (ValueError, ValidationError) as e:
+            error = e.messages
+            return render(request, 'topUpAccountBalance.html', {'amount': amount, 'profile':profile, 'error': error})
+    else:
+        return render(request, 'topUpAccountBalance.html', {'profile':profile})
+    
