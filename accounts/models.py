@@ -8,7 +8,7 @@ class Profile(models.Model):
     pictures = models.ImageField(upload_to='profilePics', default='profilePics/blankUser.png')
     birth_date = models.DateField(blank=False)
     country = models.CharField(max_length=30)
-    account_balance = models.PositiveBigIntegerField(default=100) 
+    account_balance = models.PositiveBigIntegerField(default=0) 
     owner = models.OneToOneField(User,on_delete=models.CASCADE) # Creating many to many relationship with User model
 
     def __str__(self):

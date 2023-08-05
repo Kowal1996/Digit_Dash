@@ -175,23 +175,5 @@ def deleteUser(request):
     message = 'Your account was deleted'
     return render(request, 'home.html', {'message':message})
 
-@login_required
-def topUpAccountBalance(request):
-    profile = get_object_or_404(Profile, owner= request.user)
-    if request.method == 'POST':
-        try:
-            amount = float(request.POST.get('amount', 0))
-            if amount > 0:
-                
-                profile.account_balance += amount
-                profile.save()
-                return render(request, 'topUpAccountBalance.html', {'amount': amount, 'profile':profile})
-            else:
-                error = "Amount is invalid"
-                return render(request, 'topUpAccountBalance.html', {'amount': amount, 'profile':profile, 'error': error})
-        except (ValueError, ValidationError) as e:
-            error = e.messages
-            return render(request, 'topUpAccountBalance.html', {'amount': amount, 'profile':profile, 'error': error})
-    else:
-        return render(request, 'topUpAccountBalance.html', {'profile':profile})
+
     
