@@ -11,7 +11,8 @@
 </head>
 <body>
 
-{% if user.is_authenticated %} 
+{% if user.is_authenticated %}
+    <a href="{% url 'gameOneOutOfTwenty' %}">hehe</a>
     <a href="{% url 'home' %}">Home page</a>
     <a href="{% url 'logoutUser' %}">Logout</a>
     <a href="{% url 'profileInformation' %}">Your Profile</a>
