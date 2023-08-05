@@ -17,7 +17,7 @@
     <a href="{% url 'profileInformation' %}">Your Profile</a>
     <a href="{% url 'editProfile' %}">Edit Profile</a>
     <a href="{% url 'topUpAccountBalance' %}">Top Up your account</a>
-    <p>You are loged in as:</p>
+    <p>You are logged in as:</p>
     <p>{{user.username}}</p>
 {% else %}
     <a href="{% url 'register' %}">Registration</a>
