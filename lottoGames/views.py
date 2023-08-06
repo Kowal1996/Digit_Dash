@@ -4,20 +4,21 @@ from accounts.models import Profile
 from .models import OneOutOfTwenty
 from django.core.exceptions import ValidationError
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 # Create your views here.
 def random_number():
     lucky_num = random.choice([i for i in range(1,21)])
     return lucky_num
-
+    
 @login_required      
 def gameOneOutOfTwenty(request):
-    user = get_object_or_404(Profile, owner=request.user)    
+    profile = get_object_or_404(Profile, owner=request.user)
+    user = get_object_or_404(User, username=request.user)    
     if 'lucky_number' not in request.session:
         request.session['lucky_number'] = random_number() 
     lucky_num = request.session['lucky_number'] 
-    if request.method == 'POST':
-        user = get_object_or_404(Profile, owner=request.user)
+    if request.method == 'POST': 
         if 'score' not in request.session:
             request.session['score'] = 10
         score = request.session['score']    
@@ -25,7 +26,6 @@ def gameOneOutOfTwenty(request):
             request.session['tries_count'] = 0
         tries_count = request.session['tries_count'] 
         if tries_count < 10:
-            user = get_object_or_404(Profile, owner=request.user)
             user_number = request.POST.get('user_number')
             
             if user_number.isdigit():
@@ -40,13 +40,13 @@ def gameOneOutOfTwenty(request):
                     else:
                         message = 'Good job! You picked the correct number!'
                         game = OneOutOfTwenty.objects.create(
-                            owner=user,
+                            owner=profile,
                             luckyNumber=lucky_num,
                             user_score=score
                         )
                         game.save()
-                        user.account_balance += score
-                        user.save()
+                        profile.account_balance += score
+                        profile.save()
                         if 'lucky_number' in request.session:
                             del request.session['lucky_number']
                         if 'score' in request.session:
@@ -65,13 +65,13 @@ def gameOneOutOfTwenty(request):
             message = 'You used all your chances'
             score = 0
             game = OneOutOfTwenty.objects.create(
-                        owner=user,
+                        owner=profile,
                         luckyNumber=lucky_num,
                         user_score=score
                     )
             game.save()
-            user.account_balance += score
-            user.save()
+            profile.account_balance += score
+            profile.save()
             if 'lucky_number' in request.session:
                 del request.session['lucky_number']
             if 'score' in request.session:
@@ -81,7 +81,6 @@ def gameOneOutOfTwenty(request):
             return redirect('home')
              
     else:
-        user = get_object_or_404(Profile, owner=request.user)
         return render(request, 'gameOneOutOfTwenty.html', {'lucky_number': lucky_num, 'user':user})
     
-    return render(request, 'gameOneOutOfTwenty.html', {'message': message, 'score': score, 'user': user, 'tries': tries_count})
+    return render(request, 'gameOneOutOfTwenty.html', {'message': message, 'score': score, 'tries': tries_count, 'user':user})
