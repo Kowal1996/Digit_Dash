@@ -1,69 +1,87 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 import random
 from accounts.models import Profile
-
 from .models import OneOutOfTwenty
 from django.core.exceptions import ValidationError
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def random_number():
     lucky_num = random.choice([i for i in range(1,21)])
     return lucky_num
-      
+
+@login_required      
 def gameOneOutOfTwenty(request):
     user = get_object_or_404(Profile, owner=request.user)    
     if 'lucky_number' not in request.session:
         request.session['lucky_number'] = random_number() 
-    lucky_num = request.session['lucky_number']
+    lucky_num = request.session['lucky_number'] 
     if request.method == 'POST':
+        user = get_object_or_404(Profile, owner=request.user)
         if 'score' not in request.session:
             request.session['score'] = 10
-        score = request.session['score'] 
-        
-        tries = 0     
-        for _ in range (10): 
-            user_number = request.POST.get('user_number') 
-            if tries <= 10:
-                if user_number.isdigit():
-                    user_number = int(user_number)
-                    if 1 <= user_number <= 20: 
-                        if user_number < lucky_num:
-                            score -= 1
-                            message = 'Your number is too low'
-                            tries += 1
-                            return render(request, 'gameOneOutOfTwenty.html', {'message': message, 'score':score, 'user':user, 'tries': tries})
-                        elif user_number > lucky_num:
-                            score -= 1
-                            message = 'Your number is too high'
-                            tries +=1
-                            return render(request, 'gameOneOutOfTwenty.html', {'message': message, 'score':score, 'user':user, 'tries': tries})
-                        else:
-                            message = 'Good job! You pick correct number!'
-                            game = OneOutOfTwenty.objects.create(
-                                owner = user,
-                                luckyNumber = lucky_num,
-                                user_score = score
-                            )
-                            game.save()
-                            user.account_balance += score
-                            user.save()
-                            if 'lucky_number' in request.session:
-                                del request.session['lucky_number']
-                            return render(request, 'gameOneOutOfTwenty.html', {'message': message, 'score':score, 'user':user, 'tries': tries})
-            else:
-                message = 'You used all your chances'
-                score = 0
-                game = OneOutOfTwenty.objects.create(
-                            owner = user,
-                            luckyNumber = lucky_num,
-                            user_score = score
+        score = request.session['score']    
+        if 'tries_count' not in request.session:
+            request.session['tries_count'] = 0
+        tries_count = request.session['tries_count'] 
+        if tries_count < 10:
+            user = get_object_or_404(Profile, owner=request.user)
+            user_number = request.POST.get('user_number')
+            
+            if user_number.isdigit():
+                user_number = int(user_number)
+                if 1 <= user_number <= 20: 
+                    if user_number < lucky_num:
+                        score -= 1
+                        message = 'Your number is too low'
+                    elif user_number > lucky_num:
+                        score -= 1
+                        message = 'Your number is too high'
+                    else:
+                        message = 'Good job! You picked the correct number!'
+                        game = OneOutOfTwenty.objects.create(
+                            owner=user,
+                            luckyNumber=lucky_num,
+                            user_score=score
                         )
-                game.save()
-                user.account_balance += score
-                user.save()
-                if 'lucky_number' in request.session:
-                    del request.session['lucky_number']
-                return render(request, 'gameOneOutOfTwenty.html', {'message': message, 'score':score, 'user':user})
+                        game.save()
+                        user.account_balance += score
+                        user.save()
+                        if 'lucky_number' in request.session:
+                            del request.session['lucky_number']
+                        if 'score' in request.session:
+                            del request.session['score']
+                        if 'tries_count' in request.session:
+                            del request.session['tries_count']    
+                else:
+                    message = 'Number should be between 1 and 20'
+            else:
+                message = 'Please input a number between 1 and 20'
+            
+            tries_count += 1
+            request.session['tries_count'] = tries_count
+            request.session['score'] = score      
+        else:
+            message = 'You used all your chances'
+            score = 0
+            game = OneOutOfTwenty.objects.create(
+                        owner=user,
+                        luckyNumber=lucky_num,
+                        user_score=score
+                    )
+            game.save()
+            user.account_balance += score
+            user.save()
+            if 'lucky_number' in request.session:
+                del request.session['lucky_number']
+            if 'score' in request.session:
+                del request.session['score']
+            if 'tries_count' in request.session:
+                del request.session['tries_count']
+            return redirect('home')
+             
     else:
-        return render(request, 'gameOneOutOfTwenty.html', {'lucky_number': lucky_num})
-
+        user = get_object_or_404(Profile, owner=request.user)
+        return render(request, 'gameOneOutOfTwenty.html', {'lucky_number': lucky_num, 'user':user})
+    
+    return render(request, 'gameOneOutOfTwenty.html', {'message': message, 'score': score, 'user': user, 'tries': tries_count})
