@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <ol>
+        {% for score in highest_score %}
+            <li>{{score.owner}}, {{score.account_balance}}</li>
+        {% endfor %}
+    </ol>
+{% endblock content %}

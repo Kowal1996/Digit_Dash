@@ -17,11 +17,13 @@
     <a href="{% url 'logoutUser' %}">Logout</a>
     <a href="{% url 'profileInformation' %}">Your Profile</a>
     <a href="{% url 'editProfile' %}">Edit Profile</a>
+    <a href="{% url 'leaderboards'%}">Leaderboard</a>
     <p>You are logged in as:</p>
     <p>{{user.username}}</p>
 {% else %}
     <a href="{% url 'register' %}">Registration</a>
     <a href="{% url 'loginUser' %}">Login</a>
+    <a href="{% url 'leaderboards'%}">Leaderboard</a>
 {% endif %}
 
     {% block content %}
