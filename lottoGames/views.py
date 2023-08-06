@@ -19,13 +19,15 @@ def gameOneOutOfTwenty(request):
         request.session['lucky_number'] = random_number() 
     lucky_num = request.session['lucky_number'] 
     if 'score' not in request.session:
-            request.session['score'] = 10
+        request.session['score'] = 10
     score = request.session['score']
     if 'tries_count' not in request.session:
         request.session['tries_count'] = 0
     tries_count = request.session['tries_count'] 
+
+
     if request.method == 'POST': 
-        if tries_count < 10:
+        if tries_count < 9:
             user_number = request.POST.get('user_number')
             
             if user_number.isdigit():
@@ -82,6 +84,18 @@ def gameOneOutOfTwenty(request):
             return redirect('home')
              
     else:
+        if 'lucky_number' in request.session:
+            del request.session['lucky_number']
+            request.session['lucky_number'] = random_number()
+            lucky_num = request.session['lucky_number']
+        if 'score' in request.session:
+            del request.session['score']
+            request.session['score'] = 10
+        score = request.session['score']
+        if 'tries_count' in request.session:
+            del request.session['tries_count']
+            request.session['tries_count'] = 0
+        tries_count = request.session['tries_count']
         return render(request, 'gameOneOutOfTwenty.html', {'lucky_number': lucky_num, 'user':user, 'score':score, 'tries': tries_count})
     
     return render(request, 'gameOneOutOfTwenty.html', {'message': message, 'score': score, 'tries': tries_count, 'user':user})
