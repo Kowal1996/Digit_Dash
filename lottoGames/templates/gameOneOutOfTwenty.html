@@ -1,2 +1,26 @@
+{% extends 'base.html' %}
 
-{{user}}
+
+{% block content %}
+     
+    {% if user %}
+        
+     {{lucky_number}}
+     {{tries}}
+                
+        {% if message %}
+            {{message}}
+        {% endif %}
+        <p>Your score: {{score}}</p>
+                
+        <form action = "{% url 'gameOneOutOfTwenty' %}" method="post">
+                
+            <label for="user_number">Enter a number from 1 to 20:</label>
+            <input type="number" name="user_number" min="1" max="20">
+            <button type="submit">Try to guess</button>
+            {% csrf_token %}
+        </form>
+
+    {% endif %}
+
+{% endblock content %}
