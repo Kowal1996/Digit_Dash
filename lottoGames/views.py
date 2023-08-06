@@ -18,13 +18,13 @@ def gameOneOutOfTwenty(request):
     if 'lucky_number' not in request.session:
         request.session['lucky_number'] = random_number() 
     lucky_num = request.session['lucky_number'] 
-    if request.method == 'POST': 
-        if 'score' not in request.session:
+    if 'score' not in request.session:
             request.session['score'] = 10
-        score = request.session['score']    
-        if 'tries_count' not in request.session:
-            request.session['tries_count'] = 0
-        tries_count = request.session['tries_count'] 
+    score = request.session['score']
+    if 'tries_count' not in request.session:
+        request.session['tries_count'] = 0
+    tries_count = request.session['tries_count'] 
+    if request.method == 'POST': 
         if tries_count < 10:
             user_number = request.POST.get('user_number')
             
@@ -52,7 +52,8 @@ def gameOneOutOfTwenty(request):
                         if 'score' in request.session:
                             del request.session['score']
                         if 'tries_count' in request.session:
-                            del request.session['tries_count']    
+                            del request.session['tries_count']
+                        return redirect('home')    
                 else:
                     message = 'Number should be between 1 and 20'
             else:
@@ -81,6 +82,6 @@ def gameOneOutOfTwenty(request):
             return redirect('home')
              
     else:
-        return render(request, 'gameOneOutOfTwenty.html', {'lucky_number': lucky_num, 'user':user})
+        return render(request, 'gameOneOutOfTwenty.html', {'lucky_number': lucky_num, 'user':user, 'score':score, 'tries': tries_count})
     
     return render(request, 'gameOneOutOfTwenty.html', {'message': message, 'score': score, 'tries': tries_count, 'user':user})
