@@ -55,7 +55,7 @@ def gameOneOutOfTwenty(request):
                             del request.session['score']
                         if 'tries_count' in request.session:
                             del request.session['tries_count']
-                        return redirect('home')    
+                        return render(request, 'gameResult.html', {'message':message, 'score':score})   
                 else:
                     message = 'Number should be between 1 and 20'
             else:
@@ -81,7 +81,7 @@ def gameOneOutOfTwenty(request):
                 del request.session['score']
             if 'tries_count' in request.session:
                 del request.session['tries_count']
-            return redirect('home')
+            return render(request, 'gameResult.html', {'message':message, 'score':score})  
              
     else:
         if 'lucky_number' in request.session:
@@ -110,3 +110,9 @@ def leaderboard(request):
 @login_required    
 def gameRules(request):
     return render(request, 'gameRules.html')
+
+
+def gameResult(request):
+    owner = get_object_or_404(Profile, owner=request.user)
+    game = OneOutOfTwenty.objects.filter(owner=owner).order_by('-gameDate').first()
+    return render(request, 'gameResult.html', {'game':game, 'owner':owner})
