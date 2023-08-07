@@ -1,31 +1,34 @@
 <!DOCTYPE html>
 <html lang="pl">
+{% load static %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css"> -->
+    <link rel="stylesheet" href="{% static '/css/digitdash.css' %}">
     <title>
         {% block title %}
         Digit dash
         {% endblock title %}
     </title>
 </head>
-<body>
+<body class="backroud">
 
-{% if user.is_authenticated %}
-    <a href="{% url 'gameOneOutOfTwenty' %}">GameOneOutOfTwenty</a>
-    <a href="{% url 'home' %}">Home page</a>
-    <a href="{% url 'logoutUser' %}">Logout</a>
-    <a href="{% url 'profileInformation' %}">Your Profile</a>
-    <a href="{% url 'editProfile' %}">Edit Profile</a>
-    <a href="{% url 'leaderboards'%}">Leaderboard</a>
-    <a href="{% url 'gameRules' %}">Introduction to the game</a>
-    <p>You are logged in as:</p>
-    <p>{{user.username}}</p>
-{% else %}
-    <a href="{% url 'register' %}">Registration</a>
-    <a href="{% url 'loginUser' %}">Login</a>
-    <a href="{% url 'leaderboards'%}">Leaderboard</a>
-{% endif %}
+    {% if user.is_authenticated %}
+        <a href="{% url 'gameOneOutOfTwenty' %}">GameOneOutOfTwenty</a>
+        <a href="{% url 'home' %}">Home page</a>
+        <a href="{% url 'logoutUser' %}">Logout</a>
+        <a href="{% url 'profileInformation' %}">Your Profile</a>
+        <a href="{% url 'editProfile' %}">Edit Profile</a>
+        <a href="{% url 'leaderboards'%}">Leaderboard</a>
+        <a href="{% url 'gameRules' %}">Introduction to the game</a>
+        <p>You are logged in as:</p>
+        <p>{{user.username}}</p>
+    {% else %}
+        <a href="{% url 'register' %}">Registration</a>
+        <a href="{% url 'loginUser' %}">Login</a>
+        <a href="{% url 'leaderboards'%}">Leaderboard</a>
+    {% endif %}
 
     {% block content %}
 
