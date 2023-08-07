@@ -2,13 +2,9 @@
 
 
 {% block content %}
-    
-    {% if message %}
-        <p>{{message}}</p>
-    {% endif %}
     <p>You have played: {{numOfGames}} game{{numOfGames|pluralize}}</p>
-    <ol>
-        {% for game in games  %}
+    <ol start = "{{start_index}}">
+        {% for game in games_on_page %}
             <li>
                 <p>Date of game: {{game.gameDate}}</p>
                 <p>Your score: {{game.user_score}} point{{game.user_score|pluralize}}</p>
@@ -16,6 +12,6 @@
             </li>
         {% endfor %}
     </ol>    
-        
+    {% include "pagination.html" with page=games_on_page %}
 {% endblock content %}
     

@@ -5,12 +5,14 @@ from .models import OneOutOfTwenty
 from django.core.exceptions import ValidationError
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
 def random_number():
     lucky_num = random.choice([i for i in range(1,21)])
     return lucky_num
     
+
 @login_required      
 def gameOneOutOfTwenty(request):
     profile = get_object_or_404(Profile, owner=request.user)
@@ -24,12 +26,9 @@ def gameOneOutOfTwenty(request):
     if 'tries_count' not in request.session:
         request.session['tries_count'] = 0
     tries_count = request.session['tries_count'] 
-
-
     if request.method == 'POST': 
         if tries_count != 9:
             user_number = request.POST.get('user_number')
-            
             if user_number.isdigit():
                 user_number = int(user_number)
                 if 1 <= user_number <= 20: 
@@ -106,9 +105,7 @@ def gameOneOutOfTwenty(request):
                         del request.session['score']
                     if 'tries_count' in request.session:
                         del request.session['tries_count']
-                    return redirect('gameResult')  
-
-             
+                    return redirect('gameResult')            
     else:
         if 'lucky_number' in request.session:
             del request.session['lucky_number']
@@ -137,6 +134,7 @@ def leaderboard(request):
 def gameRules(request):
     return render(request, 'gameRules.html')
 
+
 @login_required  
 def gameResult(request):
     if request.method == 'GET':
@@ -154,14 +152,21 @@ def gameResult(request):
         else:
             feedback = 'You lost because you used all your chances!'
         return render(request, 'gameResult.html', {'game':game, 'owner':owner, 'feedback':feedback})
-    
+
+
+@login_required      
 def userGames(request):
     if request.method == 'GET':
         owner = get_object_or_404(Profile, owner=request.user)
         games = OneOutOfTwenty.objects.filter(owner=owner).order_by('-gameDate')
-        if len(games) >= 1:
-            numOfGmes = len(games)
-            return render(request, 'userGames.html', {'games':games, 'numOfGames':numOfGmes})
-        else:
-            message = 'You have not played any game yet'
-            return render(request, 'userGames.html', {'message':message})
+        numOfGames = len(games)
+        paginator = Paginator(games, 5)
+        page = request.GET.get('page')
+        try:
+            games_on_page = paginator.page(page)
+        except PageNotAnInteger:
+            games_on_page = paginator.page(1)
+        except EmptyPage:
+            games_on_page = paginator.page(paginator.num_pages)
+        start_index = (games_on_page.number - 1) * paginator.per_page + 1
+        return render(request, 'userGames.html',{'games_on_page':games_on_page, 'numOfGames':numOfGames, 'page':page, 'start_index':start_index})
