@@ -105,3 +105,8 @@ def leaderboard(request):
     if request.method == 'GET':
         highest_score = Profile.objects.order_by('-account_balance')
         return render(request,'leaderboard.html', {'highest_score':highest_score})
+    
+
+@login_required    
+def gameRules(request):
+    return render(request, 'gameRules.html')

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <h1>Welcome in our game</h1>
+    <h3>There are some rules about game that You will play</h3>
+    <ol>
+        <li>You have 10 chances to guess the right number</li>
+        <li>At the beggining of the game You have 10 points</li>
+        <li>Each attempt takes you one point</li>
+        <li>When you enter a number and it turns out to be wrong the game will tell you if the number was too big or too small</li>
+        <li>Click the button bellow and have fun</li>
+    </ol>
+    <p><a href="{% url 'gameOneOutOfTwenty' %}">Play now!</a></p>
+    <p><a href="{% url 'home' %}">Back to Home Page</a></p>
+{% endblock content %}
+    
