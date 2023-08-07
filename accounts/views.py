@@ -110,7 +110,7 @@ def register(request):
                                                 profile = profile_form.save(commit=False)
                                                 profile.owner = inactive_user
                                                 profile.save()
-                                                return redirect('home')                           
+                                                return redirect('registrationSuccessfull')                           
             else:
                 error = 'Name is invalid'                
         else:
@@ -172,8 +172,14 @@ def editProfile(request):
 def deleteUser(request):
     user = User.objects.filter(username=request.user)
     user.delete()
+    logout(request)
     message = 'Your account was deleted'
     return render(request, 'home.html', {'message':message})
 
+
+def registrationSuccessfull(request):
+    if request.method == 'GET':
+        message = 'Your account has been successfully created, confirm your registration by clicking on the link in the email'
+        return render(request, 'registrationSuccessfull.html', {'message':message})
 
     
