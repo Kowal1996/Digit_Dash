@@ -2,9 +2,9 @@
 
 
 {% block content %}
-
-    {{game.user_score}}
-    {{game.owner}}
-    {{owner}}
-    {{game.luckyNumber}}
+    <p>{{feedback}}</p>
+    <p>You won: {{game.user_score}} point{{game.user_score|pluralize}}</p>
+    <p>Your lucky number was: {{game.luckyNumber}}</p>
+    <p>Currently you have: {{owner.account_balance}} point{{owner.account_balance|pluralize}}</p>
+    <a href="{% url 'gameOneOutOfTwenty' %}">Play again</a>
 {% endblock content %}

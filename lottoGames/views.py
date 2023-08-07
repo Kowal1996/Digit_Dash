@@ -55,7 +55,7 @@ def gameOneOutOfTwenty(request):
                             del request.session['score']
                         if 'tries_count' in request.session:
                             del request.session['tries_count']
-                        return render(request, 'gameResult.html', {'message':message, 'score':score})   
+                        return redirect('gameResult')  
                 else:
                     message = 'Number should be between 1 and 20'
             else:
@@ -81,7 +81,7 @@ def gameOneOutOfTwenty(request):
                 del request.session['score']
             if 'tries_count' in request.session:
                 del request.session['tries_count']
-            return render(request, 'gameResult.html', {'message':message, 'score':score})  
+            return redirect('gameResult')
              
     else:
         if 'lucky_number' in request.session:
@@ -111,8 +111,18 @@ def leaderboard(request):
 def gameRules(request):
     return render(request, 'gameRules.html')
 
-
+@login_required  
 def gameResult(request):
-    owner = get_object_or_404(Profile, owner=request.user)
-    game = OneOutOfTwenty.objects.filter(owner=owner).order_by('-gameDate').first()
-    return render(request, 'gameResult.html', {'game':game, 'owner':owner})
+    if request.method == 'GET':
+        owner = get_object_or_404(Profile, owner=request.user)
+        game = OneOutOfTwenty.objects.filter(owner=owner).order_by('-gameDate').first()
+        points = int(game.user_score)
+        if points == 10:
+            feedback = 'You are amazing. Good job!'
+        elif points >= 7:
+            feedback = 'Good job!'
+        elif points >= 4:
+            feedback = 'Try harder. You can do it better!' 
+        else:
+            feedback = 'You have to work on your memory! '
+        return render(request, 'gameResult.html', {'game':game, 'owner':owner, 'feedback':feedback})
