@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    
+    {% if message %}
+        <p>{{message}}</p>
+    {% endif %}
+    <p>You have played: {{numOfGames}} game{{numOfGames|pluralize}}</p>
+    <ol>
+        {% for game in games  %}
+            <li>
+                <p>Date of game: {{game.gameDate}}</p>
+                <p>Your score: {{game.user_score}} point{{game.user_score|pluralize}}</p>
+                <p>Lucky nuber: {{game.luckyNumber}}</p>
+            </li>
+        {% endfor %}
+    </ol>    
+        
+{% endblock content %}
+    

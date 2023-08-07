@@ -11,8 +11,8 @@
     <p>{{profile_info.city}}</p>
     <p>Your picture</p>
     <img src="{{profile_info.pictures.url}}" alt="Your Picture">
-    <a href="{% url 'password_change' %}">password change</a>
-
+    <p><a href="{% url 'password_change' %}">password change</a></p>
+    <p><a href="{% url 'userGames' %}">Your games</a></p>
     <p><a href="{% url 'deleteUser' %}">Delete account</a></p>
 </div>
 
