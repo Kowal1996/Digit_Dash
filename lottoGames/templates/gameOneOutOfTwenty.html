@@ -5,20 +5,15 @@
      
     
     {% if user %}
-        
-    
-        
-        
-        <p>Random picked number: {{lucky_number}}</p>
-        <p>Yours tried {{tries}} times</p>
+
+        <p>Yours tried {{tries}} time{{tries|pluralize}}</p>
                     
         {% if message %}
             <p>{{message}}</p>
         {% endif %}
         <p>Your score: {{score}}</p>
                     
-        <form action = "{% url 'gameOneOutOfTwenty' %}" method="post">
-                    
+        <form action = "{% url 'gameOneOutOfTwenty' %}" method="post">                   
             <label for="user_number">Enter a number from 1 to 20:</label>
             <input type="number" name="user_number" min="1" max="20">
             <button type="submit">Try to guess</button>
