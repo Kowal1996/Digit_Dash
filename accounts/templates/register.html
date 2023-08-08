@@ -1,24 +1,68 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{% if passwordError %}
-    <h3>Błąd walidacji hasła</h3>
-    <ul>
-        {% for message in passwordError %}
-            <li>{{message}}</li>
-        {% endfor %}
-    </ul>
-{% endif %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="overlay-card">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        {% if passwordError %}
+                        <div class="alert alert-danger">
 
+                            <ul>
+                                {% for message in passwordError %}
+                                    <li>{{message}}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
 
-{% if error %}
-    <h3>{{error}}</h3>
-{% endif %}
+                        {% if error %}
+                        <div class="alert alert-danger">
+                            <h4>{{error}}</h4>
+                        </div>
+                        {% endif %}
 
-<form action="{% url 'register' %}" method="post" enctype="multipart/form-data">
-    {{userForm.as_p}}
-    {{profileForm.as_p}}
-    {% csrf_token %}
-    <button type="submit">Register!</button>
-</form>
+                        <form action="{% url 'register' %}" method="post" enctype="multipart/form-data">
+                            <h3 class="centered-text">Create your account</h3>
+                            <p>
+                                Remember all fields are required.
+                                You have to be above 18 years old to create an account.
+                                Please enter your name, city and country in capital letters.
+                            </p>
+                            {% csrf_token %}
+                            <div class="mb-3">     
+                                <h5>{{userForm.username.label}}:</h5>
+                                {{userForm.username}}
+                                <p>{{userForm.username.help_text}}</p>
+                                <h5>{{userForm.email.label}}:</h5>
+                                {{userForm.email}}
+                                <h5>{{userForm.password1.label}}:</h5>
+                                {{userForm.password1}}
+                                <p>{{userForm.password1.help_text}}</p>
+                                <h5>{{userForm.password2.label}}:</h5>
+                                {{userForm.password2}}
+                                <p>{{userForm.password2.help_text}}</p>
+                                <h5>{{userForm.first_name.label}}:</h5>
+                                {{userForm.first_name}}
+                            </div>
+                            <div class="mb-3">
+                                <h5>{{profileForm.city.label}}:</h5>
+                                {{profileForm.city}}
+                                <h5>{{profileForm.country.label}}:</h5>
+                                {{profileForm.country}}
+                                <h5>{{profileForm.birth_date.label}}:</h5>
+                                {{profileForm.birth_date}}
+                                <h5>{{profileForm.pictures.label}}:</h5>
+                                {{profileForm.pictures}}
+                            </div>
+                            <button type="submit" class="btn btn-primary">Register!</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock content %}

@@ -13,3 +13,18 @@ body {
 .logout-color {
 	color:#c60606;
 }
+
+.navbar-style {
+	border-radius: 15 px;
+	width: 90%;
+	margin: 20px;
+}
+
+.mycard {
+    background-color: rgba(255, 255, 255, 0.85);
+}
+
+
+.centered-text{
+	text-align: center;
+}
