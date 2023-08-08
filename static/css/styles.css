@@ -28,3 +28,7 @@ body {
 .centered-text{
 	text-align: center;
 }
+
+.login-button {
+	margin-top: 20px;
+}
