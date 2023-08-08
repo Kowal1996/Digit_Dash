@@ -1,9 +1,33 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <ol>
-        {% for score in highest_score %}
-            <li>{{score.owner}}, {{score.account_balance}}</li>
-        {% endfor %}
-    </ol>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card bg-light">
+                <div class="card-body">
+                    <h2 class="mb-4">Highest Scores</h2>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Place</th>
+                                <th scope="col">Username</th>
+                                <th scope="col">Points</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for score in highest_score %}
+                                <tr>
+                                    <th scope="row">{{ forloop.counter }}</th>
+                                    <td>{{ score.owner }}</td>
+                                    <td>{{ score.account_balance }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock content %}
