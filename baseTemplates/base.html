@@ -1,35 +1,65 @@
 <!DOCTYPE html>
 <html lang="pl">
+{% load static %}
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <title>
         {% block title %}
         Digit dash
         {% endblock title %}
     </title>
 </head>
+
 <body>
 
-    {% if user.is_authenticated %}
-        <a href="{% url 'gameOneOutOfTwenty' %}">GameOneOutOfTwenty</a>
-        <a href="{% url 'home' %}">Home page</a>
-        <a href="{% url 'logoutUser' %}">Logout</a>
-        <a href="{% url 'profileInformation' %}">Your Profile</a>
-        <a href="{% url 'editProfile' %}">Edit Profile</a>
-        <a href="{% url 'leaderboards'%}">Leaderboard</a>
-        <a href="{% url 'gameRules' %}">Introduction to the game</a>
-        <p>You are logged in as:</p>
-        <p>{{user.username}}</p>
-    {% else %}
-        <a href="{% url 'register' %}">Registration</a>
-        <a href="{% url 'loginUser' %}">Login</a>
-        <a href="{% url 'leaderboards'%}">Leaderboard</a>
-    {% endif %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'leaderboards' %}">Leaderboard</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'gameOneOutOfTwenty' %}">Game</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'profileInformation' %}">Your Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'editProfile' %}">Edit Profile</a>
+                    </li>
+                    <li class="nav-item space-beetwen-navbar">
+                        <p class="nav-link">Logged in as: {{ user.username }}</p>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link logout-color" href="{% url 'logoutUser' %}">Logout</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'register' %}">Registration</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'loginUser' %}">Login</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-    {% block content %}
+    <div class="container mt-5">
+        {% block content %}
 
-
-    {% endblock content %}
+        {% endblock content %}
+    </div>
 </body>
+
 </html>
