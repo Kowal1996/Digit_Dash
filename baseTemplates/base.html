@@ -1,18 +1,15 @@
 <!DOCTYPE html>
 <html lang="pl">
-{% load static %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css"> -->
-    <link rel="stylesheet" href="{% static '/css/digitdash.css' %}">
     <title>
         {% block title %}
         Digit dash
         {% endblock title %}
     </title>
 </head>
-<body class="backroud">
+<body>
 
     {% if user.is_authenticated %}
         <a href="{% url 'gameOneOutOfTwenty' %}">GameOneOutOfTwenty</a>
