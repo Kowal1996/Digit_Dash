@@ -20,15 +20,25 @@ body {
 	margin: 20px;
 }
 
-.mycard {
-    background-color: rgba(255, 255, 255, 0.85);
-}
-
 
 .centered-text{
 	text-align: center;
 }
 
+.centered-item {
+	align-items: center;
+}
+
 .login-button {
 	margin-top: 20px;
+}
+
+.pagination {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.pagination a {
+    display: inline-block;
+    margin: 0 5px;
 }

@@ -6,7 +6,8 @@
         <div class="col-md-8 offset-md-2">
             <div class="card bg-light">
                 <div class="card-body">
-                    <h2 class="mb-4">Highest Scores</h2>
+                    <h3 class="mb-2 centered-text">Leaderboards</h3>
+                    <p>Bellow you can see current best players in our game</p>
                     <table class="table">
                         <thead>
                             <tr>
@@ -16,15 +17,32 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for score in highest_score %}
+                            {% for record in records_on_page %}
                                 <tr>
-                                    <th scope="row">{{ forloop.counter }}</th>
-                                    <td>{{ score.owner }}</td>
-                                    <td>{{ score.account_balance }}</td>
+                                    <th scope="row">{{record.place}}</th>
+                                    <td>{{ record.owner }}</td>
+                                    <td>{{ record.account_balance }}</td>
                                 </tr>
                             {% endfor %}
                         </tbody>
                     </table>
+                    <div class="pagination justify-content-center">
+                        <ul class="pagination">
+                            <li class="page-item {% if not records_on_page.has_previous %} disabled {% endif %}">
+                                <a class="page-link" href="{% if records_on_page.has_previous %}?page={{ records_on_page.previous_page_number }}{% endif %}">Previous</a>
+                            </li>
+                            {% for page_num in records_on_page.paginator.page_range %}
+                                {% if records_on_page.number == page_num or records_on_page.number|add:-1 == page_num or records_on_page.number|add:1 == page_num %}
+                                    <li class="page-item {% if records_on_page.number == page_num %} active {% endif %}">
+                                        <a class="page-link" href="?page={{ page_num }}">{{ page_num }}</a>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                            <li class="page-item {% if not records_on_page.has_next %} disabled {% endif %}">
+                                <a class="page-link" href="{% if records_on_page.has_next %}?page={{ records_on_page.next_page_number }}{% endif %}">Next</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
