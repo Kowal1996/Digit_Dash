@@ -1,12 +1,18 @@
 # Digit Dash Website
 
 ## Table of contents
-* General info
-* Technologies
-* Setup
-* Screenshots
-* Features
-* About
+
+:sparkles: General info
+
+:sparkles:Technologies
+
+:sparkles: Setup
+
+:sparkles: Screenshots
+
+:sparkles: Features
+
+:sparkles: About
 
 ## General info
 
@@ -20,38 +26,38 @@ Below is an overview of each app and its features:
 
 The Accounts app facilitates user registration and login functionality. Key features include:
 
-* User Registration
+:sparkles: User Registration
 
 Allows users to create an account by providing necessary details such as username, email, password, first name, city, country, birth date. Registartion has to be confirmed by email. Users under 18 years old will not gain access to the application.
 
-* User Login
+:sparkles: User Login
 
 Provides a secure login mechanism users to access additional features
 
-* Password Change
+:sparkles: Password Change
 
 Logged-in users can change their password.
 
-* Edit Profile
+:sparkles: Edit Profile
 
 Logged-in users can edit their profil. User can change own city, country and picture.
 
 
-* Profile Information
+:sparkles: Profile Information
 
 Logged-in users can check all information about their profile and check their acctual account balance. From this lever user can change the password, check all their games with the reasults and delete own account.
 
 ### LottoGames.App
 		
-* Game One Out Of Twenty
+:sparkles: Game One Out Of Twenty
 
 App offers game for logged-in users. User has 10 chances to guess the right number(lucky number). User chooses one number out of twenty. If user does not pick up a lucky number, he will get information whether the selected number is higher or lower than lucky number. Moreover, user can get maximum 10 ponits. Points are added to account balance.
 
-* Leaderboard
+:sparkles: Leaderboard
 
 Logged-in and logged-out user can chcek the list which presents the current player results.
 
-* User Games
+:sparkles: User Games
 
 Logged-in users have the opportunity of checking all the games they played. There they can find information about how many games - One Out Of Twenty - they have played do far, dates the game, how many scores they got and lucky numbers which was drawn.
 
@@ -74,13 +80,17 @@ To run this project, install it locally using:
 ## Screenshots
 
 ## Features
-* 
-* 
+:sparkles: 
+:sparkles: 
 ### To Do:
-* create an app which allows drawing numbers and typing them
-* create blog where users can add posts about their achievements
-* create a user level system f.ex (gold user, silver user etc)
-* create the ability to play with other users
+
+:sparkles: create an app which allows drawing numbers and typing them
+
+:sparkles: create blog where users can add posts about their achievements
+
+:sparkles: create a user level system f.ex (gold user, silver user etc)
+
+:sparkles:create the ability to play with other users
 ## About
 This project was created by four-person team. Feel free to contact us:
 * Anhelina Smuhliy
