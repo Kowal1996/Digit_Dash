@@ -25,7 +25,7 @@
                         <tbody>
                             {% for record in games_on_page %}
                                 <tr>
-                                    <th scope="row">{{record.gameDate}}</th>
+                                    <td>{{record.gameDate|date:"d-M-Y, H:i"}}</td>
                                     <td>{{ record.user_score }} point{{record.user_score|pluralize}}</td>
                                     <td>{{ record.luckyNumber }}</td>
                                 </tr>
