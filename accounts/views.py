@@ -10,6 +10,7 @@ from datetime import datetime
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import PasswordChangeView, PasswordChangeDoneView
 # Create your views here.
 
 def validate_email(email):
@@ -191,5 +192,14 @@ def registrationSuccessfull(request):
     if request.method == 'GET':
         message = 'Your account has been successfully created, confirm your registration by clicking on the link in the email'
         return render(request, 'registrationSuccessfull.html', {'message':message})
+    
+
+def passwordChangeView(PasswordChangeView):
+    template_name = 'password_change_form.html'
+    success_url = 'password_change/done'
+
+def passwordChangeDoneView(PasswordChangeDoneView):
+    template_name = 'password_change_done.html'
+    
 
     
