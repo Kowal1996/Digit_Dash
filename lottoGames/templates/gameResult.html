@@ -1,10 +1,25 @@
 {% extends 'base.html' %}
 
-
 {% block content %}
-    <p>{{feedback}}</p>
-    <p>You won: {{game.user_score}} point{{game.user_score|pluralize}}</p>
-    <p>Your lucky number was: {{game.luckyNumber}}</p>
-    <p>Currently you have: {{owner.account_balance}} point{{owner.account_balance|pluralize}}</p>
-    <a href="{% url 'gameOneOutOfTwenty' %}">Play again</a>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card bg-light">
+                <div class="card-body">
+                    <h3 class="text-center">Your result:</h3>
+                    <p class="text-center">{{ feedback }}</p>
+                    <p class="text-center">You won: {{ game.user_score }} point{{ game.user_score|pluralize }}</p>
+                    <p class="text-center">Your lucky number was: {{ game.luckyNumber }}</p>
+                    <p class="text-center">Currently you have: {{ owner.account_balance }} point{{ owner.account_balance|pluralize }}</p>
+                    <div class="text-center">
+                        <a href="{% url 'gameOneOutOfTwenty' %}" class="btn btn-primary">Play again</a>
+                    </div>
+                    <div class="text-center mt-2">
+                        <a href="{% url 'home' %}" class="btn btn-primary">Take me home</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock content %}
