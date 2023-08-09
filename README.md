@@ -80,8 +80,11 @@ To run this project, install it locally using:
 ## Contact
 Crated by:
 * Anhelina Smuhliy
-* Jakub Jasiński www.linkedin.com/in/jasinski-jakub
-* Kamila Czajkowska [<img align="left" alt="linked-in" src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" />](https://www.linkedin.com/in/kamila-czajkowska/)
+* Jakub Jasiński - connect with Jakub
+[<img align="left" alt="linked-in" src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" />](https://www.linkedin.com/in/jasinski-jakub/)
+
+* Kamila Czajkowska - connect with Kamila 
+[<img align="left" alt="linked-in" src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" />](https://www.linkedin.com/in/kamila-czajkowska/)
 
 
 * Szymon Kowalski 
