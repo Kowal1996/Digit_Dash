@@ -2,16 +2,52 @@
 
 
 {% block content %}
-    <p>You have played: {{numOfGames}} game{{numOfGames|pluralize}}</p>
-    <ol start = "{{start_index}}">
-        {% for game in games_on_page %}
-            <li>
-                <p>Date of game: {{game.gameDate}}</p>
-                <p>Your score: {{game.user_score}} point{{game.user_score|pluralize}}</p>
-                <p>Lucky nuber: {{game.luckyNumber}}</p>
-            </li>
-        {% endfor %}
-    </ol>    
-    {% include "pagination.html" with page=games_on_page %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card bg-light">
+                <div class="card-body">
+                    <h3 class="mb-2 centered-text">Your games</h3>
+                    <p class="text-center">Here is a table with all your games</p>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col"> Game date</th>
+                                <th scope="col">Your score</th>
+                                <th scope="col">Lucky number</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for record in games_on_page %}
+                                <tr>
+                                    <th scope="row">{{record.gameDate}}</th>
+                                    <td>{{ record.user_score }} point{{record.user_score|pluralize}}</td>
+                                    <td>{{ record.luckyNumber }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <div class="pagination justify-content-center">
+                        <ul class="pagination">
+                            <li class="page-item {% if not games_on_page.has_previous %} disabled {% endif %}">
+                                <a class="page-link" href="{% if games_on_page.has_previous %}?page={{ games_on_page.previous_page_number }}{% endif %}">Previous</a>
+                            </li>
+                            {% for page_num in games_on_page.paginator.page_range %}
+                                {% if games_on_page.number == page_num or games_on_page.number|add:-1 == page_num or games_on_page.number|add:1 == page_num %}
+                                    <li class="page-item {% if games_on_page.number == page_num %} active {% endif %}">
+                                        <a class="page-link" href="?page={{ page_num }}">{{ page_num }}</a>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                            <li class="page-item {% if not games_on_page.has_next %} disabled {% endif %}">
+                                <a class="page-link" href="{% if games_on_page.has_next %}?page={{ games_on_page.next_page_number }}{% endif %}">Next</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock content %}
     
