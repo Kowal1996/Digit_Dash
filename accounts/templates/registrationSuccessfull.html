@@ -1,7 +1,16 @@
 {% extends 'base.html' %}
 
-
 {% block content %}
-    {{message}}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card bg-light">
+                <div class="card-body">
+                    <h3 class="mb-4 centered-text">Registration successfull!</h3>
+                    <p>{{ message }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock content %}
-    
