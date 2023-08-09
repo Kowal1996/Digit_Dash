@@ -5,7 +5,7 @@
 * Technologies
 * Setup
 * Features
-* Contact
+* About
 
 ## General info
 
@@ -21,44 +21,44 @@ The Accounts app facilitates user registration and login functionality. Key feat
 
 * User Registration
 
-Allows users to create an account by providing necessary details such as username, email, password, first name, city, country, birth date. Registartion has to be confirmed by email. Users under 18 years old will not gain access to the application.
+_Allows users to create an account by providing necessary details such as username, email, password, first name, city, country, birth date. Registartion has to be confirmed by email. Users under 18 years old will not gain access to the application.
 
 * User Login
 
-Provides a secure login mechanism users to access additional features
+_Provides a secure login mechanism users to access additional features
 
 * Password Change
 
-Logged-in users can change their password.
+_Logged-in users can change their password.
 
 * Edit Profile
 
-Logged-in users can edit their profil. User can change own city, country and picture.
+_Logged-in users can edit their profil. User can change own city, country and picture.
 
 
 * Profile Information
 
-Logged-in users can check all information about their profile and check their acctual account balance. From this lever user can change the password, check all their games with the reasults and delete own account.
+_Logged-in users can check all information about their profile and check their acctual account balance. From this lever user can change the password, check all their games with the reasults and delete own account.
 
 ### LottoGames.App
 		
 * Game One Out Of Twenty
 
-App offers game for logged-in users. User has 10 chances to guess the right number(lucky number). User chooses one number out of twenty. If user does not pick up a lucky number, he will get information whether the selected number is higher or lower than lucky number. Moreover, user can get maximum 10 ponits. Points are added to account balance.
+_App offers game for logged-in users. User has 10 chances to guess the right number(lucky number). User chooses one number out of twenty. If user does not pick up a lucky number, he will get information whether the selected number is higher or lower than lucky number. Moreover, user can get maximum 10 ponits. Points are added to account balance.
 
 * Leaderboard
 
-Logged-in and logged-out user can chcek the list which presents the current player results.
+_Logged-in and logged-out user can chcek the list which presents the current player results.
 
 * User Games
 
-Logged-in users have the opportunity of checking all the games they played. There they can find information about how many games - One Out Of Twenty - they have played do far, dates the game, how many scores they got and lucky numbers which was drawn.
+_Logged-in users have the opportunity of checking all the games they played. There they can find information about how many games - One Out Of Twenty - they have played do far, dates the game, how many scores they got and lucky numbers which was drawn.
 
 ## Technologies
 
 Project is created with:
-* Bootstrap v5.3
-* Django 4.2.3
+:sparkles: Bootstrap v5.3 
+:sparkles: Django 4.2.3 
 
 ## Setup
 
@@ -77,14 +77,14 @@ To run this project, install it locally using:
 * 
 * 
 
-## Contact
-Crated by:
+## About
+This project was created by four-person team. Feel free to contact us:
 * Anhelina Smuhliy
-* connect with Jakub Jasiński
-[<img align="left" alt="linked-in" src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" />](https://www.linkedin.com/in/jasinski-jakub/)
+* Jakub Jasiński
+    *  [<img align="left" alt="linked-in-Jakub-Jasiński" src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" />](https://www.linkedin.com/in/jasinski-jakub/)
 
-* connect with Kamila Czajkowska
-[<img align="left" alt="linked-in" src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" />](https://www.linkedin.com/in/kamila-czajkowska/)
+* Kamila Czajkowska
+    * [<img align="left" alt="linked-in-Kamila-Czajkowska" src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" />](https://www.linkedin.com/in/kamila-czajkowska/)
 
 
 * Szymon Kowalski 
