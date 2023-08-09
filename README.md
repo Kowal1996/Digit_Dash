@@ -5,6 +5,7 @@
 * Technologies
 * Setup
 * Features
+* Contact
 
 ## General info
 
@@ -18,11 +19,11 @@ Below is an overview of each app and its features:
 
 The Accounts app facilitates user registration and login functionality. Key features include:
 
-* User Registration: 
+* User Registration
 
 Allows users to create an account by providing necessary details such as username, email, password, first name, city, country, birth date. Registartion has to be confirmed by email. Users under 18 years old will not gain access to the application.
 
-* User Login:
+* User Login
 
 Provides a secure login mechanism users to access additional features
 
@@ -51,7 +52,7 @@ Logged-in and logged-out user can chcek the list which presents the current play
 
 * User Games
 
-Logged-in users have the opportunity of checking all the games they played. There they can find information about how many games - One Out Of Twenty - they have played do far, date the game, how many score they got and lucky number which was drawn.
+Logged-in users have the opportunity of checking all the games they played. There they can find information about how many games - One Out Of Twenty - they have played do far, dates the game, how many scores they got and lucky numbers which was drawn.
 
 ## Technologies
 
@@ -75,3 +76,10 @@ To run this project, install it locally using:
 ### To Do:
 * 
 * 
+
+## Contact
+Crated by:
+* Anhelina Smuhliy
+* Jakub Jasiński www.linkedin.com/in/jasinski-jakub
+* Kamila Czajkowska <a href=”https://www.linkedin.com/in/kamila-czajkowska/"><img align=”left” src=”https://raw.githubusercontent.com/username/reponame/branch/foldername/icon.svg" alt=”icon | LinkedIn” width=”21px”/></a>
+* Szymon Kowalski 
