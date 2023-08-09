@@ -1,9 +1,49 @@
 {% extends 'base.html' %}
 {% block content %}
-   <h1>Main Page</h1>
 
-   {% if message %}
-      {{message}} 
-   {% endif %}
-    
+{% if user.is_authenticated %}
+<!--<h1>Main Page with login user</h1>-->
+
+<div class="jumbotron">
+    <div class="container">
+        <div class="row">
+            <div class="col background-white m-1 mb-5">
+                <p class="display-4">Witamy w magicznym swiecie uroczliwych liczb w naszej niesamowitej grze!</p>
+                <p class="display-6">Zagraj z nami!</p>
+                <p><a class="link-secondary text-decoration-none m-1" href="{% url 'gameOneOutOfTwenty' %}">OneOutOfTwenty</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container" >
+
+    <div class="row">
+        <div class="col background-white text-truncate">
+            <p class="">Zasady gry</p>
+            <a class="link-secondary text-decoration-none text-truncate"  href="{% url 'gameRules' %}">Welcome in our game. There are some rules about game that You will play.You have 10 chances to guess the right number  There are some rules about game that You will play There are some rules about game that You will play There are some rules about game that You will play</a>
+        </div>
+        <div class="col background-white m-1">
+            <p >Tu znajdziesz liste lepszych graczy: </p>
+            <p><a class="link-secondary text-decoration-none" href="{% url 'leaderboards' %}">Leaderboard</a></p>
+
+        </div>
+        <div class="col background-white m-1">
+            <p>Najnowsze gry</p>
+            <p><a class="link-secondary text-decoration-none" href="{% url 'gameOneOutOfTwenty' %}">OneOutOfTwenty</a></p>
+
+        </div>
+    </div>
+</div>
+{% else %}
+<h1>Main Page unlogin user</h1>
+
+
+{% endif %}
+
+{% if message %}
+{{message}}
+{% endif %}
+
+
 {% endblock content %}
