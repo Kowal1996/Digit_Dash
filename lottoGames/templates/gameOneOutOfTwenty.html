@@ -1,26 +1,39 @@
 {% extends 'base.html' %}
 
-
 {% block content %}
-     
-    
-    {% if user %}
-
-        <p>Yours tried {{tries}} time{{tries|pluralize}}</p>
-                    
-        {% if message %}
-            <p>{{message}}</p>
-        {% endif %}
-        <p>Your score: {{score}}</p>
-                    
-        <form action = "{% url 'gameOneOutOfTwenty' %}" method="post">
-                    
-            <label for="user_number">Enter a number from 1 to 20:</label>
-            <input type="number" name="user_number" min="1" max="20">
-            <button type="submit">Try to guess</button>
-            {% csrf_token %}
-        </form>
-
-    {% endif %}
-
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card bg-light">
+                <div class="card-body">
+                    {% if user %}
+                        <p class="text-center">Your tried {{ tries }} time{{ tries|pluralize }}</p>
+                        {% if message %}
+                            <p class="alert alert text-center">{{ message }}</p>
+                        {% endif %}
+                        <p class="text-center">Your score: {{ score }}</p>
+                        <form action="{% url 'gameOneOutOfTwenty' %}" method="post" class="text-center">
+                            <label for="user_number">Enter a number from 1 to 20:</label>
+                            <div class="btn-group mt-3" role="group" aria-label="Number selection">
+                                <div>
+                                    <div class="btn-group" role="group" aria-label="First row numbers">
+                                        {% for num in num_list_first %}
+                                            <button type="submit" class="btn btn-primary m-2 my-button" name="user_number" value="{{ num }}">{{ num }}</button>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="btn-group" role="group" aria-label="Second row numbers">
+                                        {% for num in num_list_second %}
+                                            <button type="submit" class="btn btn-primary m-2 my-button" name="user_number" value="{{ num }}">{{ num }}</button>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                            {% csrf_token %}
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock content %}
