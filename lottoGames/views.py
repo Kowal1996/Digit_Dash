@@ -16,7 +16,9 @@ def random_number():
 @login_required      
 def gameOneOutOfTwenty(request):
     profile = get_object_or_404(Profile, owner=request.user)
-    user = get_object_or_404(User, username=request.user)    
+    user = get_object_or_404(User, username=request.user)
+    num_list_first = [i for i in range(1,11)] 
+    num_list_second = [i for i in range(11,21)] 
     if 'lucky_number' not in request.session:
         request.session['lucky_number'] = random_number() 
     lucky_num = request.session['lucky_number'] 
@@ -29,83 +31,82 @@ def gameOneOutOfTwenty(request):
     if request.method == 'POST': 
         if tries_count != 9:
             user_number = request.POST.get('user_number')
-            if user_number.isdigit():
-                user_number = int(user_number)
-                if 1 <= user_number <= 20: 
-                    if user_number < lucky_num:
-                        score -= 1
-                        tries_count += 1
-                        request.session['tries_count'] = tries_count
-                        request.session['score'] = score  
-                        message = 'Your number is too low'
-                    elif user_number > lucky_num:
-                        score -= 1
-                        tries_count += 1
-                        request.session['tries_count'] = tries_count
-                        request.session['score'] = score  
-                        message = 'Your number is too high'
-                    else:
-                        request.session['score'] = score  
-                        # message = 'Good job! You picked the correct number!'
-                        game = OneOutOfTwenty.objects.create(
-                            owner=profile,
-                            luckyNumber=lucky_num,
-                            user_score=score
-                        )
-                        game.save()
-                        profile.account_balance += score
-                        profile.save()
-                        if 'lucky_number' in request.session:
-                            del request.session['lucky_number']
-                        if 'score' in request.session:
-                            del request.session['score']
-                        if 'tries_count' in request.session:
-                            del request.session['tries_count']
-                        return redirect('gameResult')  
-                else:
-                    message = 'Number should be between 1 and 20'
+            
+            user_number = int(user_number)
+                 
+            if user_number < lucky_num:
+                score -= 1
+                tries_count += 1
+                request.session['tries_count'] = tries_count
+                request.session['score'] = score  
+                message = 'Your number is too low'
+            elif user_number > lucky_num:
+                score -= 1
+                tries_count += 1
+                request.session['tries_count'] = tries_count
+                request.session['score'] = score  
+                message = 'Your number is too high'
             else:
-                message = 'Please input a number between 1 and 20'          
+                request.session['score'] = score  
+                # message = 'Good job! You picked the correct number!'
+                game = OneOutOfTwenty.objects.create(
+                    owner=profile,
+                    luckyNumber=lucky_num,
+                    user_score=score
+                )
+                game.save()
+                profile.account_balance += score
+                profile.save()
+                if 'lucky_number' in request.session:
+                    del request.session['lucky_number']
+                if 'score' in request.session:
+                    del request.session['score']
+                if 'tries_count' in request.session:
+                    del request.session['tries_count']
+                return redirect('gameResult')  
+                    
         else:
             user_number = request.POST.get('user_number')
-            if user_number.isdigit():
-                user_number = int(user_number)
-                if user_number != lucky_num:
-                    # message = 'You used all your chances'
-                    score = 0
-                    game = OneOutOfTwenty.objects.create(
-                                owner=profile,
-                                luckyNumber=lucky_num,
-                                user_score=score
-                            )
-                    game.save()
-                    profile.account_balance += score
-                    profile.save()
-                    if 'lucky_number' in request.session:
-                        del request.session['lucky_number']
-                    if 'score' in request.session:
-                        del request.session['score']
-                    if 'tries_count' in request.session:
-                        del request.session['tries_count']
-                    return redirect('gameResult')
-                else:
-                    request.session['score'] = score  
-                    # message = 'Good job! You picked the correct number!'
-                    game = OneOutOfTwenty.objects.create(
+            
+            user_number = int(user_number)
+            if user_number != lucky_num:
+                # message = 'You used all your chances'
+                score = 0
+                game = OneOutOfTwenty.objects.create(
                         owner=profile,
                         luckyNumber=lucky_num,
                         user_score=score
-                    )
-                    game.save()
-                    profile.account_balance += score
-                    profile.save()
-                    if 'lucky_number' in request.session:
-                        del request.session['lucky_number']
-                    if 'score' in request.session:
-                        del request.session['score']
-                    if 'tries_count' in request.session:
-                        del request.session['tries_count']
-                    return redirect('gameResult')            
+                        )
+                game.save()
+                profile.account_balance += score
+                profile.save()
+                if 'lucky_number' in request.session:
+                    del request.session['lucky_number']
+                if 'score' in request.session:
+                    del request.session['score']
+                if 'tries_count' in request.session:
+                    del request.session['tries_count']
+                return redirect('gameResult')
+            else:
+                request.session['score'] = score  
+                # message = 'Good job! You picked the correct number!'
+                game = OneOutOfTwenty.objects.create(
+                    owner=profile,
+                    luckyNumber=lucky_num,
+                    user_score=score
+                )
+                game.save()
+                profile.account_balance += score
+                profile.save()
+                if 'lucky_number' in request.session:
+                    del request.session['lucky_number']
+                if 'score' in request.session:
+                    del request.session['score']
+                if 'tries_count' in request.session:
+                    del request.session['tries_count']
+                return redirect('gameResult')
+            
+        return render(request, 'gameOneOutOfTwenty.html', {'message': message, 'score': score, 'tries': tries_count, 'user':user, 'num_list_first':num_list_first,'num_list_second':num_list_second})            
     else:
         if 'lucky_number' in request.session:
             del request.session['lucky_number']
@@ -119,9 +120,9 @@ def gameOneOutOfTwenty(request):
             del request.session['tries_count']
             request.session['tries_count'] = 0
         tries_count = request.session['tries_count']
-        return render(request, 'gameOneOutOfTwenty.html', {'lucky_number': lucky_num, 'user':user, 'score':score, 'tries': tries_count})
+        return render(request, 'gameOneOutOfTwenty.html', {'lucky_number': lucky_num, 'user':user, 'score':score, 'tries': tries_count,'num_list_first':num_list_first,'num_list_second':num_list_second})
     
-    return render(request, 'gameOneOutOfTwenty.html', {'message': message, 'score': score, 'tries': tries_count, 'user':user})
+   
 
 
 def leaderboard(request):
