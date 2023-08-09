@@ -1,22 +1,40 @@
 {% extends 'base.html' %}
+
 {% block content %}
-<div>
-    <p>Your username</p>
-    <p>{{profile_info.owner}}</p>
-    <p>Your account balance</p>
-    <p>{{profile_info.account_balance}}</p>
-    <p>Your country</p>
-    <p>{{profile_info.country}}</p>
-    <p>Your city</p>
-    <p>{{profile_info.city}}</p>
-    <p>Your picture</p>
-    <img src="{{profile_info.pictures.url}}" alt="Your Picture">
-    <p><a href="{% url 'password_change' %}">password change</a></p>
-    <p><a href="{% url 'userGames' %}">Your games</a></p>
-    <p><a href="{% url 'deleteUser' %}">Delete account</a></p>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card bg-light">
+                <div class="card-body">
+                    <h3 class="mb-4 text-center">Your Profile Information</h3>
+                    <div class="mb-3 text-center">
+                        <h5>Your picture</h5>
+                        <img src="{{ profile_info.pictures.url }}" alt="Your Picture" class="img-thumbnail profile-image">
+                    </div>
+                    <div class="mb-3 text-center">
+                        <h5>Your username</h5>
+                        <p>{{ profile_info.owner }}</p>
+                    </div>
+                    <div class="mb-3 text-center">
+                        <h5>Your account balance</h5>
+                        <p>{{ profile_info.account_balance }} point{{profile_info.account_balance|pluralize}}</p>
+                    </div>
+                    <div class="mb-3 text-center">
+                        <h5>Your country</h5>
+                        <p>{{ profile_info.country }}</p>
+                    </div>
+                    <div class="mb-3 text-center">
+                        <h5>Your city</h5>
+                        <p>{{ profile_info.city }}</p>
+                    </div>
+                    <div class="mb-3 text-center">
+                        <a href="{% url 'password_change' %}" class="btn btn-warning">Change Password</a>
+                        <a href="{% url 'userGames' %}" class="btn btn-primary">Your Games</a>
+                        <a href="{% url 'deleteUser' %}" class="btn btn-danger">Delete Account</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
-
-
-
 {% endblock content %}

@@ -127,7 +127,19 @@ def gameOneOutOfTwenty(request):
 def leaderboard(request):
     if request.method == 'GET':
         highest_score = Profile.objects.order_by('-account_balance')
-        return render(request,'leaderboard.html', {'highest_score':highest_score})
+        paginator = Paginator(highest_score,5)
+        page=request.GET.get('page')
+        try:
+            records_on_page = paginator.page(page)
+        except PageNotAnInteger:
+            records_on_page = paginator.page(1)
+        except EmptyPage:
+            records_on_page = paginator.page(paginator.num_pages)
+        start_index = (records_on_page.number - 1) * paginator.per_page + 1
+        for record in records_on_page:
+            record.place = start_index
+            start_index += 1
+        return render(request,'leaderboard.html', {'records_on_page':records_on_page, 'page':page})
     
 
 @login_required    

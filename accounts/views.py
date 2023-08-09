@@ -10,11 +10,18 @@ from datetime import datetime
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import PasswordChangeView, PasswordChangeDoneView
 # Create your views here.
 
 def validate_email(email):
     regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b'
     if re.fullmatch(regex, email):
+        return True
+    else:
+        return False
+    
+def validate_username(username):
+    if len(username) >=5:
         return True
     else:
         return False
@@ -72,47 +79,51 @@ def register(request):
         birth_date = request.POST.get('birth_date')
 
         if password1 == password2:
-            firstNameValid = validate_first_name(first_name)
-            if firstNameValid:
-                usernameTaken = User.objects.filter(username=username).exists()
-                emailTaken = User.objects.filter(email=email).exists()
-                if usernameTaken:
-                    error = 'Username is already taken'
-                if emailTaken:
-                    error = 'Email is already taken'
-                if not usernameTaken and not emailTaken:
-                    try:
-                        validate_password(password1)
-                    except ValidationError as e:
-                        return render(request, 'register.html', {'userForm': userForm, 'profileForm': profileForm, 'passwordError': e.messages})    
-                    else:
-                        emailValid = validate_email(email)
-                        if not emailValid:
-                            error = 'Email is not valid'
+            usernameValid = validate_username(username)
+            if usernameValid:
+                firstNameValid = validate_first_name(first_name)
+                if firstNameValid:
+                    usernameTaken = User.objects.filter(username=username).exists()
+                    emailTaken = User.objects.filter(email=email).exists()
+                    if usernameTaken:
+                        error = 'Username is already taken'
+                    if emailTaken:
+                        error = 'Email is already taken'
+                    if not usernameTaken and not emailTaken:
+                        try:
+                            validate_password(password1)
+                        except ValidationError as e:
+                            return render(request, 'register.html', {'userForm': userForm, 'profileForm': profileForm, 'passwordError': e.messages})    
                         else:
-                            cityValid = validate_city(city)
-                            if not cityValid:
-                                error = 'City is not valid'
+                            emailValid = validate_email(email)
+                            if not emailValid:
+                                error = 'Email is not valid'
                             else:
-                                countryValid = validate_country(country)
-                                if not countryValid:
-                                    error = 'Country is not valid'
+                                cityValid = validate_city(city)
+                                if not cityValid:
+                                    error = 'City is not valid'
                                 else:
-                                    ageValid = validate_age(birth_date)
-                                    if not ageValid:
-                                        error = 'You are too young'
+                                    countryValid = validate_country(country)
+                                    if not countryValid:
+                                        error = 'Country is not valid'
                                     else:
-                                        user_form = MyRegistrationForm(request.POST)
-                                        if user_form.is_valid():
-                                            inactive_user = send_verification_email(request, user_form)
-                                            profile_form = ProfileForm(request.POST, request.FILES)
-                                            if profile_form.is_valid():
-                                                profile = profile_form.save(commit=False)
-                                                profile.owner = inactive_user
-                                                profile.save()
-                                                return redirect('registrationSuccessfull')                           
+                                        ageValid = validate_age(birth_date)
+                                        if not ageValid:
+                                            error = 'You are too young'
+                                        else:
+                                            user_form = MyRegistrationForm(request.POST)
+                                            if user_form.is_valid():
+                                                inactive_user = send_verification_email(request, user_form)
+                                                profile_form = ProfileForm(request.POST, request.FILES)
+                                                if profile_form.is_valid():
+                                                    profile = profile_form.save(commit=False)
+                                                    profile.owner = inactive_user
+                                                    profile.save()
+                                                    return redirect('registrationSuccessfull')                           
+                else:
+                    error = 'Name is invalid'
             else:
-                error = 'Name is invalid'                
+                error = 'Username is too short. It must be at least 5 characters long'                        
         else:
             error = 'Passwords did not match'   
         return render(request, 'register.html', {'userForm': userForm, 'profileForm': profileForm, 'error': error})
@@ -181,5 +192,14 @@ def registrationSuccessfull(request):
     if request.method == 'GET':
         message = 'Your account has been successfully created, confirm your registration by clicking on the link in the email'
         return render(request, 'registrationSuccessfull.html', {'message':message})
+    
+
+def passwordChangeView(PasswordChangeView):
+    template_name = 'password_change_form.html'
+    success_url = 'password_change/done'
+
+def passwordChangeDoneView(PasswordChangeDoneView):
+    template_name = 'password_change_done.html'
+    
 
     

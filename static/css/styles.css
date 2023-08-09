@@ -1,0 +1,50 @@
+body {
+	background-image: url("/static/images/bg.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+
+.space-beetwen-navbar {
+	margin-left: 600px;
+}
+
+.logout-color {
+	color: #c60606;
+}
+
+.navbar-style {
+	border-radius: 15 px;
+	width: 90%;
+	margin: 20px;
+}
+
+.centered-text {
+	text-align: center;
+}
+
+.centered-item {
+	align-items: center;
+}
+
+.login-button {
+	margin-top: 20px;
+}
+
+.pagination {
+	margin-top: 20px;
+	text-align: center;
+}
+
+.pagination a {
+	display: inline-block;
+	margin: 0 5px;
+}
+
+.text-danger {
+	color: red;
+}
+
+.profile-image {
+	max-width: 40%;
+}
