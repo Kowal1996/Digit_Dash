@@ -6,14 +6,15 @@
         <div class="col-md-6">
             <div class="card bg-light">
                 <div class="card-body">
+                    <h3 class="text-center">Digit Dash Game</h3>
                     {% if user %}
                         <p class="text-center">Your tried {{ tries }} time{{ tries|pluralize }}</p>
                         {% if message %}
-                            <p class="alert alert text-center">{{ message }}</p>
+                            <p class="alert alert-danger text-center">{{ message }}</p>
                         {% endif %}
                         <p class="text-center">Your score: {{ score }}</p>
                         <form action="{% url 'gameOneOutOfTwenty' %}" method="post" class="text-center">
-                            <label for="user_number">Enter a number from 1 to 20:</label>
+                            <label for="user_number">Select your lucky number:</label>
                             <div class="btn-group mt-3" role="group" aria-label="Number selection">
                                 <div>
                                     <div class="btn-group" role="group" aria-label="First row numbers">
