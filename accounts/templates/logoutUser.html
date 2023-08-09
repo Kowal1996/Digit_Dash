@@ -2,9 +2,18 @@
 
 {% block title %}Logout{% endblock title %}
 
-
 {% block content %}
-    <h1>Logout</h1>
-    <p>You have successfully logged out. You can <a href="{% url 'loginUser' %}">LOGIN</a> again.</p>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card bg-light">
+                <div class="card-body">
+                    <h1 class="text-center">Logout</h1>
+                    <p class="text-center">You have successfully logged out. Click button bellow to login again.</p>
+                    <p class="text-center"><a href="{% url 'loginUser' %}" class="btn btn-primary">Login</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock content %}
-       
