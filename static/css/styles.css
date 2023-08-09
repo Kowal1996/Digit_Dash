@@ -1,9 +1,8 @@
-
 body {
-    background-image: url("/static/images/bg.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+	background-image: url("/static/images/bg.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
 }
 
 .space-beetwen-navbar {
@@ -11,7 +10,7 @@ body {
 }
 
 .logout-color {
-	color:#c60606;
+	color: #c60606;
 }
 
 .navbar-style {
@@ -20,8 +19,7 @@ body {
 	margin: 20px;
 }
 
-
-.centered-text{
+.centered-text {
 	text-align: center;
 }
 
@@ -34,11 +32,19 @@ body {
 }
 
 .pagination {
-    margin-top: 20px;
-    text-align: center;
+	margin-top: 20px;
+	text-align: center;
 }
 
 .pagination a {
-    display: inline-block;
-    margin: 0 5px;
+	display: inline-block;
+	margin: 0 5px;
+}
+
+.text-danger {
+	color: red;
+}
+
+.profile-image {
+	max-width: 40%;
 }
