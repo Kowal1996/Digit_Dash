@@ -10,7 +10,7 @@ urlpatterns = [
     path('profileInformation/', views.profileInformation, name='profileInformation'),
     path('editProfile', views.editProfile, name='editProfile'),
     path('deleteUser/', views.deleteUser, name='deleteUser'),
-    path('password_change/', auth_views.PasswordChangeView.as_view(template_name='password_change_form.html'), name='password_change'),
+    path('password_change/', auth_views.PasswordChangeView.as_view(template_name='password_change_form.html', success_url = '/password_change/done'), name='password_change', ),
     path('password_change/done', auth_views.PasswordChangeDoneView.as_view(template_name='password_change_done.html'), name='password_change_done'),
     path('registrationSuccessfull/', views.registrationSuccessfull, name='registrationSuccessfull'),
 ]

@@ -192,14 +192,4 @@ def registrationSuccessfull(request):
     if request.method == 'GET':
         message = 'Your account has been successfully created, confirm your registration by clicking on the link in the email'
         return render(request, 'registrationSuccessfull.html', {'message':message})
-    
 
-def passwordChangeView(PasswordChangeView):
-    template_name = 'password_change_form.html'
-    success_url = 'password_change/done'
-
-def passwordChangeDoneView(PasswordChangeDoneView):
-    template_name = 'password_change_done.html'
-    
-
-    
