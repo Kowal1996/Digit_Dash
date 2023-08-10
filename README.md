@@ -10,7 +10,7 @@
 
 :sparkles: Screenshots
 
-:sparkles: Features
+:sparkles: To Do
 
 :sparkles: About
 
@@ -74,15 +74,13 @@ Project is created with:
 To run this project, install it locally using:
 
 ```
-
+pip install -r requirements.txt
 ```
 
 ## Screenshots
 
-## Features
-:sparkles: 
-:sparkles: 
-### To Do:
+
+## To Do:
 
 :sparkles: add api
 
@@ -93,15 +91,18 @@ To run this project, install it locally using:
 :sparkles: create a user level system f.ex (gold user, silver user etc)
 
 :sparkles:create the ability to play with other users
+
 ## About
-This project was created by four-person team. Feel free to contact us:
-* Anhelina Smuhliy
-    *  [<img align="left" alt="linked-in" src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" />]()
-* Jakub Jasiński
-    *  [<img align="left" alt="linked-in" src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" />](https://www.linkedin.com/in/jasinski-jakub/)
+This project was created with :heart: by four-person team. Feel free to contact us:
 
-* Kamila Czajkowska
-    *  [<img align="left" alt="linked-in" src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" />](https://www.linkedin.com/in/kamila-czajkowska/)
+:star: Anhelina Smuhliy
+    [<img align="left" alt="linked-in" src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" />]()
 
-* Szymon Kowalski
-    *  [<img align="left" alt="linked-in" src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" />]()
+:star2: Jakub Jasiński
+    [<img align="left" alt="linked-in" src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" />](https://www.linkedin.com/in/jasinski-jakub/)
+
+:star2: Kamila Czajkowska
+    [<img align="left" alt="linked-in" src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" />](https://www.linkedin.com/in/kamila-czajkowska/)
+
+:star: Szymon Kowalski
+    [<img align="left" alt="linked-in" src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" />]()
