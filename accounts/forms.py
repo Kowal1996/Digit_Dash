@@ -8,11 +8,15 @@ class MyRegistrationForm(UserCreationForm):
     email = forms.EmailField()
     first_name = forms.CharField()
     
-    
-
     class Meta:
         model = User
         fields = ('username', 'email', 'password1', 'password2', 'first_name')
+
+    def clean_email(self):
+        return self.cleaned_data['email'].lower()
+    
+    def clean_first_name(self):
+        return self.cleaned_data['first_name'].capitalize()
 
 
 class ProfileForm(forms.ModelForm):

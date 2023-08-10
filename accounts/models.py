@@ -9,7 +9,11 @@ class Profile(models.Model):
     birth_date = models.DateField(blank=False)
     country = models.CharField(max_length=30)
     account_balance = models.PositiveBigIntegerField(default=0) 
-    owner = models.OneToOneField(User,on_delete=models.CASCADE) # Creating many to many relationship with User model
+    owner = models.OneToOneField(User,on_delete=models.CASCADE)
+
+    def clean(self):
+        self.city = self.city.capitalize()
+        self.country = self.country.capitalize()
 
     def __str__(self):
         return f'{self.owner}'

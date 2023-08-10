@@ -10,8 +10,8 @@ from datetime import datetime
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.views import PasswordChangeView, PasswordChangeDoneView
-# Create your views here.
+
+
 
 def validate_email(email):
     regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b'
@@ -21,20 +21,20 @@ def validate_email(email):
         return False
     
 def validate_username(username):
-    if len(username) >=5:
+    if len(username) >=4:
         return True
     else:
         return False
     
 def validate_first_name(first_name):
-    regex = r'\b[A-Z][a-z]{0,49}\b'
+    regex = r'\b[A-Za-z]{1,50}\b'
     if re.fullmatch(regex,first_name):
         return True
     else:
         return False
     
 def validate_city(city):
-    regex = r'\b[A-Z][a-z]{0,100}\b'
+    regex = r'\b[A-Za-z]{1,100}\b'
     if re.fullmatch(regex,city):
         return True
     else:
@@ -42,7 +42,7 @@ def validate_city(city):
     
 
 def validate_country(country):
-    regex = r'\b[A-Z][a-z]{0,100}\b'
+    regex = r'\b[A-Za-z]{1,100}\b'
     if re.fullmatch(regex,country):
         return True
     else:
@@ -84,7 +84,7 @@ def register(request):
                 firstNameValid = validate_first_name(first_name)
                 if firstNameValid:
                     usernameTaken = User.objects.filter(username=username).exists()
-                    emailTaken = User.objects.filter(email=email).exists()
+                    emailTaken = User.objects.filter(email=email.lower()).exists()
                     if usernameTaken:
                         error = 'Username is already taken'
                     if emailTaken:
