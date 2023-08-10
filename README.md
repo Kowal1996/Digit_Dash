@@ -1,4 +1,4 @@
-# Digit Dash Website
+# |- Digit Dash Website -|
 
 ## Table of contents
 
@@ -16,7 +16,7 @@
 
 ## General info
 
-|= This is a final project of Python bootcamp from Software Development Academy (SDA). Our group had 40-class-hours to finish that project. The project was finish in a four-person team. To created this apllication we create around 40'ty branches so far.
+|=This is a final project of Python bootcamp from Software Development Academy (SDA). Our group had 40-class-hours to finish that project. The project was finish in a four-person team. To created this apllication we create around 40'ty branches so far.
 At the beginning, our goal was to create a website that allows drawing numbers and typing them. Unfortunately, we have noticed that such an application will require more work from us than we assumed. So we created a simple game that allows users to draw one number and guess it. 
 For now it is MVP realization. Our team plans to develop this project systematically. There are still areas that need to be perfected. The next goal is to implement our original assumption. This is a Django-basted website project which allow to relax and de-stress after a hard day at work. Actually, website consists of two individuals apps, each serving a specific purpose.=|
 
@@ -28,7 +28,7 @@ The Accounts app facilitates user registration and login functionality. Key feat
 
 :sparkles: **User Registration**
 
-|=*Allows users to create an account by providing necessary details such as username, email, password, first name, city, country, birth date. Registartion has to be confirmed by email. Users under 18 years old will not gain access to the application.*=|
+*|=Allows users to create an account by providing necessary details such as username, email, password, first name, city, country, birth date. Registartion has to be confirmed by email. Users under 18 years old will not gain access to the application.=|* 
 
 :sparkles: **User Login**
 
