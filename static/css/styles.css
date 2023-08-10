@@ -3,7 +3,9 @@ body {
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
-	height: 200vh;
+	position: relative;
+	margin-bottom: 100px;
+
 }
 
 .space-beetwen-navbar {
@@ -53,9 +55,6 @@ footer {
 	position: fixed;
 	bottom: 0;
 	width: 100%;
+	height: 40px;
 }
-.stop {
-	position: fixed;
-	top: 0;
-	width: 100%;
-}
+
