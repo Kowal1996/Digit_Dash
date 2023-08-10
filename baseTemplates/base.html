@@ -15,46 +15,46 @@
 </head>
 
 <body>
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container ">
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <h6><a class="nav-link" href="{% url 'home' %}">Home</a></h6>
-                    </li>
-                    <li class="nav-item">
-                        <h6><a class="nav-link" href="{% url 'leaderboards' %}">Leaderboard</a></h6>
-                    </li>
-                    {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <h6><a class="nav-link" href="{% url 'gameRules' %}">Game</a></h6>
-                    </li>
-                    <li class="nav-item">
-                        <h6><a class="nav-link" href="{% url 'profileInformation' %}">Your Profile</a></h6>
-                    </li>
-                    <li class="nav-item">
-                        <h6><a class="nav-link" href="{% url 'editProfile' %}">Edit Profile</a></h6>
-                    </li>
-                    <li class="nav-item space-beetwen-navbar">
-                        <h6><p class="nav-link">Logged in as: {{ user.username }}</p></h6>
-                    </li>
-                    <li class="nav-item">
-                        <h6><a class="nav-link logout-color" href="{% url 'logoutUser' %}">Logout</a></h6>
-                    </li>
-                    {% else %}
-                    <li class="nav-item">
-                        <h6><a class="nav-link" href="{% url 'register' %}">Registration</a></h6>
-                    </li>
-                    <li class="nav-item">
-                        <h6><a class="nav-link" href="{% url 'loginUser' %}">Login</a></h6>
-                    </li>
-                    {% endif %}
-                </ul>
+    <div class="stop">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container ">
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <h6><a class="nav-link" href="{% url 'home' %}">Home</a></h6>
+                        </li>
+                        <li class="nav-item">
+                            <h6><a class="nav-link" href="{% url 'leaderboards' %}">Leaderboard</a></h6>
+                        </li>
+                        {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <h6><a class="nav-link" href="{% url 'gameRules' %}">Game</a></h6>
+                        </li>
+                        <li class="nav-item">
+                            <h6><a class="nav-link" href="{% url 'profileInformation' %}">Your Profile</a></h6>
+                        </li>
+                        <li class="nav-item">
+                            <h6><a class="nav-link" href="{% url 'editProfile' %}">Edit Profile</a></h6>
+                        </li>
+                        <li class="nav-item space-beetwen-navbar">
+                            <h6><p class="nav-link">Logged in as: {{ user.username }}</p></h6>
+                        </li>
+                        <li class="nav-item">
+                            <h6><a class="nav-link logout-color" href="{% url 'logoutUser' %}">Logout</a></h6>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <h6><a class="nav-link" href="{% url 'register' %}">Registration</a></h6>
+                        </li>
+                        <li class="nav-item">
+                            <h6><a class="nav-link" href="{% url 'loginUser' %}">Login</a></h6>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
-
+        </nav>
+    </div>
     <div class="container mt-5">
         {% block content %}
 
@@ -65,10 +65,10 @@
 <footer class="fixed-bottom bg-light py-2">
     <div class="container text-center">
         <div class="row">
-            <div class="col-md-6">
+            
                 <p class="display-7 mb-1">© 2023 Copyright:</p>
                 <small class="text-dark-50">This website is made with &#10084; by DigitDashTeam</p>
-            </div>    
+             
         </div>   
     </div>
 </footer>

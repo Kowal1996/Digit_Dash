@@ -1,8 +1,9 @@
-body, html {
+body {
 	background-image: url("/static/images/bg.jpg");
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
+	height: 200vh;
 }
 
 .space-beetwen-navbar {
@@ -51,5 +52,10 @@ body, html {
 footer {
 	position: fixed;
 	bottom: 0;
+	width: 100%;
+}
+.stop {
+	position: fixed;
+	top: 0;
 	width: 100%;
 }
