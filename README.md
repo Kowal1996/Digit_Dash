@@ -79,7 +79,7 @@ pip install -r requirements.txt
 
 ## Screenshots
     * Main page
-![Algorithm schema]("/static/images/mainPage.png") 
+![mainPage](/static/images/mainPage.png) 
 
 
 
