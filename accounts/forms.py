@@ -28,10 +28,20 @@ class ProfileForm(forms.ModelForm):
         model = Profile
         fields = ('city', 'country', 'birth_date', 'pictures')
 
+    def clean_city(self):
+        return self.cleaned_data['city'].capitalize()
+    
+    def clean_country(self):
+        return self.cleaned_data['country'].capitalize()
 
 class EditProfileForm(forms.ModelForm):
+    
     class Meta:
         model = Profile
         fields = ('city', 'country', 'pictures')
 
-
+    def clean_city(self):
+        return self.cleaned_data['city'].capitalize()
+    
+    def clean_country(self):
+        return self.cleaned_data['country'].capitalize()
