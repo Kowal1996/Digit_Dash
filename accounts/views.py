@@ -151,7 +151,6 @@ def logoutUser(request):
 @login_required
 def profileInformation(request):
     profile_info = get_object_or_404(Profile, owner=request.user)
-    # user_info = get_object_or_404(User, user=request.user)
     return render(request, 'profileInformation.html', {'profile_info': profile_info})
 
 @login_required

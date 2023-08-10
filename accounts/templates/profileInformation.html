@@ -25,6 +25,10 @@
                         <p>{{ profile_info.account_balance }} point{{profile_info.account_balance|pluralize}}</p>
                     </div>
                     <div class="mb-3 text-center">
+                        <h5>Your name</h5>
+                        <p>{{ profile_info.owner.first_name }}</p>
+                    </div>
+                    <div class="mb-3 text-center">
                         <h5>Your country</h5>
                         <p>{{ profile_info.country }}</p>
                     </div>
