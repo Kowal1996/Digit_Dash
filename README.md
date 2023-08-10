@@ -76,25 +76,25 @@ pip install -r requirements.txt
 ```
 
 ## Screenshots
-    * Main page
+#### Main page
 ![mainPage](/static/images/mainPage.png) 
 
-    * Leaderboards
+#### Leaderboards
 ![leaderboard](/static/images/leaderboard.png)
 
-    * Main page - Login user
+#### Main page - Login user
 ![mainPageLoginUser](/static/images/mainPageLoginUser.png)
 
-    * Profile information
+#### Profile information
 ![profileInformation](/static/images/profileInformation.png)
 
-    * Game
+#### Game
 ![game](/static/images/game.png)
 
-    * Game result
+#### Game result
 ![gameResult](/static/images/gameResult.png)
 
-    * User games
+#### User games
 ![userGames](/static/images/userGames.png)
 
 ## To Do:
