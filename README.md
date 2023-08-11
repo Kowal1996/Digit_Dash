@@ -99,7 +99,7 @@ pip install -r requirements.txt
 
 ## To Do:
 
-:sparkles: Add api
+:sparkles: Add API
 
 :sparkles: Create an app which allows drawing numbers and typing them
 
