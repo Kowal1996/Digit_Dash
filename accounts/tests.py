@@ -3,7 +3,9 @@ from django.contrib.auth.models import User
 from .forms import MyRegistrationForm, ProfileForm
 from datetime import date
 from django.core.files.uploadedfile import SimpleUploadedFile
-
+from .models import Profile
+from django.urls import reverse
+from django.test import Client
 # Create your tests here.
   
 class MyRegistrationFormTestCase(TestCase): # pass
@@ -123,4 +125,55 @@ class ProfileFormTestCase(TestCase):
         }
         form = ProfileForm(data=form_data, files={'pictures': file})
         self.assertFalse(form.is_valid())
+
+class LeaderboarsPageTestsCase(TestCase):
+    def test_url_exists_at_correct_location(self):
+        url = reverse('leaderboards')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+
+    def test_template_name_correct(self):
+        url = reverse('leaderboards')
+        response = self.client.get(url)
+        self.assertTemplateUsed(response, 'leaderboard.html')
+
+    def test_template_content(self):
+        url = reverse('leaderboards')
+        response = self.client.get(url)
+        self.assertContains(response, 'Leaderboards')
+        self.assertNotContains(response, 'Not on the page')
+
+class LoginUserPageTestCase(TestCase):
+    def test_url_exists_at_correct_location(self):
+        url = reverse('loginUser')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+
+    def test_template_name_correct(self):
+        url = reverse('loginUser')
+        response = self.client.get(url)
+        self.assertTemplateUsed(response, 'loginUser.html')
+
+    def test_template_content(self):
+        url = reverse('loginUser')
+        response = self.client.get(url)
+        self.assertContains(response, 'Log in')
+        self.assertNotContains(response, 'Not on the page')
+
+class RegistrationPageTestCase(TestCase):
+    def test_url_exists_at_correct_location(self):
+        url = reverse('register')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+
+    def test_template_name_core(self):
+        url = reverse('register')
+        response = self.client.get(url)
+        self.assertTemplateUsed(response, 'register.html')
+
+    def test_template_content(self):
+        url = reverse('register')
+        response = self.client.get(url)
+        self.assertContains(response,'Create your account')
+        self.assertNotContains(response, 'Not on the page')
 
