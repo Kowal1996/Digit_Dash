@@ -123,7 +123,7 @@ def register(request):
                 else:
                     error = 'Name is invalid'
             else:
-                error = 'Username is too short. It must be at least 5 characters long'                        
+                error = 'Username is too short. It must be at least 4 characters long'                        
         else:
             error = 'Passwords did not match'   
         return render(request, 'register.html', {'userForm': userForm, 'profileForm': profileForm, 'error': error})
