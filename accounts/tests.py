@@ -1,6 +1,8 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
-from .forms import MyRegistrationForm
+from .forms import MyRegistrationForm, ProfileForm
+from datetime import date
+from django.core.files.uploadedfile import SimpleUploadedFile
 
 # Create your tests here.
   
@@ -74,4 +76,51 @@ class LoginUserTestCase(TestCase): # pass
         self.assertEqual(UserTest1.password, 'Test12345!')
 
 
+class ProfileFormTestCase(TestCase):
+    def test_profile_form_is_valid(self):       
+        form_data = {
+            'city': 'TestCity',
+            'country': 'TestCountry',
+            'birth_date': date.today(),
+        }
+        form = ProfileForm(data=form_data)
+        self.assertTrue(form.is_valid())
+
+    def test_profile_form_invalid_city(self):       
+        form_data = {
+            'city': '',
+            'country': 'TestCountry',
+            'birth_date': date.today(),
+        }
+        form = ProfileForm(data=form_data)
+        self.assertFalse(form.is_valid())
+
+    def test_profile_form_invalid_country(self):       
+        form_data = {
+            'city': 'TestCity',
+            'country': '',
+            'birth_date': date.today(),
+        }
+        form = ProfileForm(data=form_data)
+        self.assertFalse(form.is_valid())
+
+    def test_profile_form_invalid_date(self):       
+        form_data = {
+            'city': 'TestCity',
+            'country': 'TestCountry',
+            'birth_date': '1'
+        }
+        form = ProfileForm(data=form_data)
+        self.assertFalse(form.is_valid())
+
+    def test_profile_form_invalid_pictures(self):
+        file = SimpleUploadedFile('testfile.txt', b"test text" , content_type='text/plain')       
+        form_data = {
+            'city': 'TestCity',
+            'country': 'TestCountry',
+            'birth_date': date.today(),
+            'pictures': file,
+        }
+        form = ProfileForm(data=form_data, files={'pictures': file})
+        self.assertFalse(form.is_valid())
 

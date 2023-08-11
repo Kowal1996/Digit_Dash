@@ -119,7 +119,9 @@ def register(request):
                                                     profile = profile_form.save(commit=False)
                                                     profile.owner = inactive_user
                                                     profile.save()
-                                                    return redirect('registrationSuccessfull')                           
+                                                    return redirect('registrationSuccessfull')
+                                                else:
+                                                    error='File is invalid, please choose image file.'                           
                 else:
                     error = 'Name is invalid'
             else:
