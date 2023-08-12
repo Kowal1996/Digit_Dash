@@ -1,4 +1,5 @@
 <p></p>
+
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Satisfy&weight=800&size=40&pause=1000&color=000000&width=435&lines=Digit+Dash+Website)](https://git.io/typing-svg)
 
 ## Table of contents
