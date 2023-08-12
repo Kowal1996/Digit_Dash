@@ -1,19 +1,49 @@
 
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Satisfy&weight=800&size=40&pause=1000&color=000000&width=435&lines=Digit+Dash+Website)](https://git.io/typing-svg)
 
-## Table of contents
+## Technologies
 
-:sparkles: General info
+Project is created with:
 
-:sparkles:Technologies
+:sparkles: Bootstrap v5.3 
 
-:sparkles: Setup
+:sparkles: Django 4.2.3 
 
-:sparkles: Screenshots
+:sparkles: SQLite 3.42.0
 
-:sparkles: To Do
+## Setup
 
-:sparkles: About
+To download the repository use:
+```
+git clone https://github.com/KowalCapo/Digit_Dash.git
+```
+
+To run this project, install required packages using:
+
+```
+pip install -r requirements.txt
+```
+## Screenshots
+#### Main page
+![mainPage](/static/images/mainPage.png) 
+
+#### Leaderboards
+![leaderboard](/static/images/leaderboard.png)
+
+#### Main page - Login user
+![mainPageLoginUser](/static/images/mainPageLoginUser.png)
+
+#### Profile information
+![profileInformation](/static/images/profileInformation.png)
+
+#### Game
+![game](/static/images/game.png)
+
+#### Game result
+![gameResult](/static/images/gameResult.png)
+
+#### User games
+![userGames](/static/images/userGames.png)
 
 ## General info
 
@@ -60,44 +90,6 @@ The Accounts app facilitates user registration and login functionality. Key feat
 
 *Logged-in users have the opportunity of checking all the games they played. There they can find information about how many games - One Out Of Twenty - they have played do far, dates the game, how many scores they got and lucky numbers which was drawn.*
 
-## Technologies
-
-Project is created with:
-
-:sparkles: Bootstrap v5.3 
-
-:sparkles: Django 4.2.3 
-
-## Setup
-
-To run this project, install it locally using:
-
-```
-pip install -r requirements.txt
-```
-
-## Screenshots
-#### Main page
-![mainPage](/static/images/mainPage.png) 
-
-#### Leaderboards
-![leaderboard](/static/images/leaderboard.png)
-
-#### Main page - Login user
-![mainPageLoginUser](/static/images/mainPageLoginUser.png)
-
-#### Profile information
-![profileInformation](/static/images/profileInformation.png)
-
-#### Game
-![game](/static/images/game.png)
-
-#### Game result
-![gameResult](/static/images/gameResult.png)
-
-#### User games
-![userGames](/static/images/userGames.png)
-
 ## To Do:
 
 :sparkles: Add API
@@ -110,7 +102,7 @@ pip install -r requirements.txt
 
 :sparkles: Create the ability to play with other users
 
-## About
+## About us
 This project was created with :heart: by four-person team. Feel free to contact us:
 
 :star: Anhelina Smuhliy
