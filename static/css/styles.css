@@ -60,3 +60,8 @@ footer {
 .background-white{ 
     background-color: rgba(255,255,255,.9);
 }
+
+.about-image {
+	height: 100px;
+	width: 300px;
+}
