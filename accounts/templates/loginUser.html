@@ -29,6 +29,7 @@
                             {% csrf_token %}
                             <p><button type="submit" class="btn btn-primary login-button">LOGIN</button></p>
                         </form>
+                        <p><a class="btn btn-warning" href="{% url 'password_reset' %}">Forgot password?</a></p>
                     </div>
                 </div>
             </div>
