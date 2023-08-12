@@ -1,24 +1,87 @@
-
+<p></p>
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Satisfy&weight=800&size=40&pause=1000&color=000000&width=435&lines=Digit+Dash+Website)](https://git.io/typing-svg)
 
 ## Table of contents
 
-:sparkles: General info
+:sparkles: Technologies
 
-:sparkles:Technologies
+:sparkles: Screenshots
 
 :sparkles: Setup
 
-:sparkles: Screenshots
+:sparkles: General info
 
 :sparkles: To Do
 
 :sparkles: About
 
+
+## Technologies
+
+Project is created with:
+
+:sparkles: HTML5, CSS and Bootstrap v5.3 
+
+:sparkles: Python and Django 4.2.3 
+
+:sparkles: SQLite 3.42.0
+## Screenshots
+#### Main page
+![mainPage](/static/images/mainPage.png) 
+
+#### Leaderboards
+![leaderboard](/static/images/leaderboard.png)
+
+#### Main page - Login user
+![mainPageLoginUser](/static/images/mainPageLoginUser.png)
+
+#### Profile information
+![profileInformation](/static/images/profileInformation.png)
+
+#### Game
+![game](/static/images/game.png)
+
+#### Game result
+![gameResult](/static/images/gameResult.png)
+
+#### User games
+![userGames](/static/images/userGames.png)
+
+#### About us
+## Setup
+
+1. To download the repository use:
+```
+git clone https://github.com/KowalCapo/Digit_Dash.git
+```
+2. Navigate to the project directory:
+```
+$ cd Digit_Dash
+```
+3. (Optional) It is recommended to create and activate a Python virtual environment:
+```
+$ virtualenv env
+$ env/Scripts/activate
+```
+4. Install required packages using:
+```
+pip install -r requirements.txt
+```
+5. Set the environment variables:
+
+
+
+
+6. Run the Django development server:
+```
+$ python manage.py runserver
+```
+The application will be available at http://localhost:8000/
 ## General info
 
-This is a final project of Python bootcamp from Software Development Academy (SDA). Our group had 40-class-hours to finish that project. The project was finish in a four-person team. To created this apllication we create around 40'ty branches so far. At the beginning, our goal was to create a website that allows drawing numbers and typing them. Unfortunately, we have noticed that such an application will require more work from us than we assumed. So we created a simple game that allows users to draw one number and guess it. 
-For now it is MVP realization. Our team plans to develop this project systematically. There are still areas that need to be perfected. The next goal is to implement our original assumption. This is a Django-basted website project which allow to relax and de-stress after a hard day at work. Actually, website consists of two individuals apps, each serving a specific purpose.
+We are the members of workshops from Software Development Academy (SDA). Our group had 40-class-hours to finish assumed mvp. The project was created in a four-person team. To created this apllication we create around 50'ty branches so far. At the beginning, our goal was to create a website that allows drawing numbers and typing them. Unfortunately, we have noticed that such an application will require more work from us than we assumed. So we created a simple game that allows users to draw one number and guess it. 
+For now it is MVP realization. Our team plans to develop this project systematically. There are still areas that need to be perfected. The next goal is to implement our original assumption. During this project we improved technical knowledge and due to the teamwork we reafine: communication skills, listen carefully and openness to suggestions, tips and ideas of others.
+This is a Django-basted website project which allow to relax and de-stress after a hard day at work. Actually, website consists of two individuals apps, each serving a specific purpose.
 
 Below is an overview of each app and its features:
 
@@ -60,44 +123,6 @@ The Accounts app facilitates user registration and login functionality. Key feat
 
 *Logged-in users have the opportunity of checking all the games they played. There they can find information about how many games - One Out Of Twenty - they have played do far, dates the game, how many scores they got and lucky numbers which was drawn.*
 
-## Technologies
-
-Project is created with:
-
-:sparkles: Bootstrap v5.3 
-
-:sparkles: Django 4.2.3 
-
-## Setup
-
-To run this project, install it locally using:
-
-```
-pip install -r requirements.txt
-```
-
-## Screenshots
-#### Main page
-![mainPage](/static/images/mainPage.png) 
-
-#### Leaderboards
-![leaderboard](/static/images/leaderboard.png)
-
-#### Main page - Login user
-![mainPageLoginUser](/static/images/mainPageLoginUser.png)
-
-#### Profile information
-![profileInformation](/static/images/profileInformation.png)
-
-#### Game
-![game](/static/images/game.png)
-
-#### Game result
-![gameResult](/static/images/gameResult.png)
-
-#### User games
-![userGames](/static/images/userGames.png)
-
 ## To Do:
 
 :sparkles: Add API
@@ -110,7 +135,7 @@ pip install -r requirements.txt
 
 :sparkles: Create the ability to play with other users
 
-## About
+## About us
 This project was created with :heart: by four-person team. Feel free to contact us:
 
 :star: Anhelina Smuhliy
