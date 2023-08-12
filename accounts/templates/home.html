@@ -10,6 +10,18 @@
       <div class="jumbotron">
          <div class="container">
             <div class="row">
+               <div class="card background-white rounded-2 border border-secondary">
+                  <div class="col mb-5 ">
+                     <p class="display-4 text-center mt-5">Digit Dash</p>
+                     <p class="display-7 text-center">Simple numbers game created by group of young developers</p>
+                     <p class="text-center"><a class="btn btn-primary m-1"
+                        href="#">About us!</a></p>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="container mt-4">
+            <div class="row">
                <div class="card background-white border border-secondary">
                   <div class="col mb-5">
                      <p class="display-4 text-center mt-5">Welcome in our world of number games</p>
@@ -23,17 +35,29 @@
 
       <div class="container">
          <div class="row">
-            <div class="col background-white m-4 text-center rounded-2 border border-secondary">
+            <div class="col background-white mt-4 mx-4 text-center rounded-2 border border-secondary">
                <h6 class="mt-3">Check out rules before start</h6>
                <p><a class="btn btn-primary" href="{% url 'gameRules' %}">Rules</a></p>
             </div>
-            <div class="col background-white m-4 text-center rounded-2 border border-secondary">
-               <h6 class="mt-3">List of our top players</h6>
-               <p><a class="btn btn-primary" href="{% url 'leaderboards' %}">Leaderboard</a></p>
-            </div>
-            <div class="col background-white m-4 text-center rounded-2 border border-secondary">
+            <div class="col background-white mt-4 mx-4 text-center rounded-2 border border-secondary">
                <h6 class="mt-3">The newest game</h6>
                <p><a class="btn btn-primary" href="{% url 'gameOneOutOfTwenty' %}">Play now</a></p>
+            </div>
+         </div>
+      </div>
+      <div class="container">
+         <div class="row">
+            <div class="col background-white mt-4 mx-4 text-center rounded-2 border border-secondary">
+               <h6 class="mt-3">List of our top players</h6>
+               <p>Top player: <span class="btn btn-primary fw-bold">{{top_player}}</span></p>
+               <h6>See more bellow</h6>
+               <p><a class="btn btn-primary" href="{% url 'leaderboards' %}">Leaderboard</a></p>
+            </div>
+            <div class="col background-white mt-4 mx-4 text-center rounded-2 border border-secondary">
+               <h6 class="mt-3">Short statistics</h6>
+               <p>Total accounts count: <span class="btn btn-primary">{{users}}</span></p>
+               <p>Total players points: <span class="btn btn-primary">{{total_points}}</span></p>
+               <p>Total games played: <span class="btn btn-primary">{{games}}</span></p>
             </div>
          </div>
       </div>
@@ -44,7 +68,9 @@
                <div class="card background-white rounded-2 border border-secondary">
                   <div class="col mb-5 ">
                      <p class="display-4 text-center mt-5">Digit Dash</p>
-                     <p class="display-7 text-center">Simple numbers game reated by group of young developers</p>
+                     <p class="display-7 text-center">Simple numbers game created by group of young developers</p>
+                     <p class="text-center"><a class="btn btn-primary m-1"
+                        href="#">About us!</a></p>
                   </div>
                </div>
             </div>
@@ -53,12 +79,22 @@
       <div class="container">
          <div class="row">
             <div class="col background-white m-4 text-center rounded-2 border border-secondary">
-               <h6 class="mt-3">If u have an active account click bellow and login</h6>
+               <h6 class="mt-3">If you have an active account click bellow and login</h6>
                <p><a class="btn btn-primary" href="{% url 'loginUser' %}">Login</a></p>
             </div>
             <div class="col background-white m-4 text-center rounded-2 border border-secondary">
                <h6 class="mt-3">Otherwise create an account here</h6>
                <p><a class="btn btn-primary" href="{% url 'register' %}">Register</a></p>
+            </div>
+         </div>
+      </div>
+      <div class="container">
+         <div class="row justify-content-center">
+            <div class="col-md-6 background-white m-4 text-center rounded-2 border border-secondary">
+               <h6 class="mt-3">Short statistics</h6>
+               <p>Total accounts count: <span class="btn btn-primary">{{users}}</span></p>
+               <p>Total players points: <span class="btn btn-primary">{{total_points}}</span></p>
+               <p>Total games played: <span class="btn btn-primary">{{games}}</span></p>
             </div>
          </div>
       </div>

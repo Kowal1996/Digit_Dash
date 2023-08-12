@@ -10,6 +10,7 @@ from datetime import datetime
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from lottoGames.models import OneOutOfTwenty
 
 
 
@@ -59,7 +60,15 @@ def validate_age(birth_date):
 
 
 def home(request):
-    return render(request, 'home.html')
+    users = User.objects.filter(is_active=True).count()
+    profiles = Profile.objects.all()
+    top_player = Profile.objects.order_by('-account_balance').first()
+    games = OneOutOfTwenty.objects.all().count()
+    total_points = 0
+    for profile in profiles:
+        total_points += profile.account_balance
+    
+    return render(request, 'home.html', {'users':users, 'games':games, 'total_points':total_points, 'top_player':top_player})
 
 def register(request):
     if request.method == 'GET':
