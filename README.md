@@ -1,3 +1,4 @@
+
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Satisfy&weight=800&size=40&pause=1000&color=000000&width=435&lines=Digit+Dash+Website)](https://git.io/typing-svg)
 
 ## Table of contents
@@ -122,4 +123,4 @@ This project was created with :heart: by four-person team. Feel free to contact 
     [<img align="left" alt="linked-in" src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" />](https://www.linkedin.com/in/kamila-czajkowska/)
 
 :star: Szymon Kowalski
-    [<img align="left" alt="linked-in" src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" />]()
+    [<img align="left" alt="linked-in" src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" />](https://www.linkedin.com/in/szymon-kowalski-843806257/)
