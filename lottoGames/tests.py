@@ -12,24 +12,23 @@ class GamePlayedTestCase(TestCase):
             email='test@test.pl',
             password = 'Test1234!',
             first_name='Testname'
-            )
+        )
         self.profile = Profile.objects.create(
             city="Testcity",
             country="Testcountry",
             birth_date = "1990-01-01",
             owner=self.user
         )
-        def create_game(self):
-            game = OneOutOfTwenty.objects.create(
+    def test_create_game(self):
+        game = OneOutOfTwenty.objects.create(
             owner = self.profile,
             user_score = 10,
             luckyNumber = 10
-        )
-            
-            self.assertTrue(game.luckyNumber, 10)
-            self.assertTrue(game.user_score, 10)
-            self.assertTrue(game.owner, self.profile)
-            self.assertTrue(game.gameDate, datetime.datetime.now())
+        )     
+        self.assertTrue(game.luckyNumber, 10)
+        self.assertTrue(game.user_score, 10)
+        self.assertTrue(game.owner, self.profile)
+        self.assertTrue(game.gameDate, datetime.datetime.now())
 
 
 class UserGamesTestCase(TestCase):
