@@ -29,12 +29,12 @@
                         {% endif %}
 
                         <form action="{% url 'register' %}" method="post" enctype="multipart/form-data">
-                            <h3 class="centered-text">Create your account</h3>
-                            <p>
-                                Remember all fields are required.
-                                You have to be above 18 years old to create an account.
-                                Please enter your name, city and country in capital letters.
-                            </p>
+                            <div class="text-center">
+                                <h3>Create your account</h3>
+                                <p>Remember all fields are required.</p>
+                                <p>You have to be above 18 years old to create an account.</p>
+                                <p>Please use english alphabet.</p>
+                            </div>
                             {% csrf_token %}
                             <div class="mb-3">     
                                 <h5>{{userForm.username.label}}:</h5>
