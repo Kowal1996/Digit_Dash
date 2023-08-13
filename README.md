@@ -59,11 +59,11 @@ Project is created with:
 
 1. To download the repository use:
     ```
-    git clone https://github.com/KowalCapo/Digit_Dash.git
+    git clone https://github.com/Kowal1996/Digit_Dash.git
     ```
 2. Navigate to the project directory:
     ```
-    $ cd Digit_Dash_Project
+    $ cd Digit_Dash
     ```
 3. (Optional) It is recommended to create and activate a Python virtual environment:
     ```
@@ -73,7 +73,8 @@ Project is created with:
 
 4. Set the environment variables:
     
-    *Create file .env in main project folder(Digit_Dash_Project)
+    *Create file .env in main folder
+    *Add bellow lines into .env file:
     ```
     *SECRET_KEY=django-insecure-t#fg#d7jy20kji!7b0=pn#82$#zdaa@jm-8t7x72!7nc_kde
     *EMAIL_HOST_USER = 'digitdashsdaproject@gmail.com'
