@@ -20,9 +20,9 @@ class MyRegistrationFormTestCase(TestCase):
         form = MyRegistrationForm(data=form_data)
         self.assertTrue(form.is_valid())
         
-    def test_my_registration_form_user_invalid(self):
+    def test_my_registration_form_username_invalid(self):
         form_data = {
-            'username': 'tes',
+            'username': '',
             'email': 'test@test.pl',
             'password1': 'Test1234!',
             'password2': 'Test1234!',

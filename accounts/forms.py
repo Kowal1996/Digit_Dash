@@ -7,7 +7,7 @@ from datetime import date
 class MyRegistrationForm(UserCreationForm):
     email = forms.EmailField()
     first_name = forms.CharField(min_length=1)
-    username = forms.CharField(min_length=4)
+    username = forms.CharField()
     
     class Meta:
         model = User
