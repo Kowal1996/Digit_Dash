@@ -16,7 +16,6 @@
 
 :sparkles: About
 
-
 ## Technologies
 
 Project is created with:
@@ -52,31 +51,35 @@ Project is created with:
 ## Setup
 
 1. To download the repository use:
-```
-git clone https://github.com/KowalCapo/Digit_Dash.git
-```
+    ```
+    git clone https://github.com/KowalCapo/Digit_Dash.git
+    ```
 2. Navigate to the project directory:
-```
-$ cd Digit_Dash
-```
+    ```
+    $ cd Digit_Dash_Project
+    ```
 3. (Optional) It is recommended to create and activate a Python virtual environment:
-```
-$ virtualenv env
-$ env/Scripts/activate
-```
-4. Install required packages using:
-```
-pip install -r requirements.txt
-```
-5. Set the environment variables:
+    ```
+    $ virtualenv env
+    $ env/Scripts/activate
+    ```
 
-
-
-
+4. Set the environment variables:
+    
+    *Create file .env in main project folder(Digit_Dash_Project)
+    ```
+    *SECRET_KEY=django-insecure-t#fg#d7jy20kji!7b0=pn#82$#zdaa@jm-8t7x72!7nc_kde
+    *EMAIL_HOST_USER = 'digitdashsdaproject@gmail.com'
+    *EMAIL_HOST_PASSWORD = 'gedlrlgxzujtkami'
+    ```
+5. Install required packages using:
+    ```
+    pip install -r requirements.txt
+    ```
 6. Run the Django development server:
-```
-$ python manage.py runserver
-```
+    ```
+    $ python manage.py runserver
+    ```
 The application will be available at http://localhost:8000/
 ## General info
 
@@ -102,6 +105,10 @@ The Accounts app facilitates user registration and login functionality. Key feat
 
 *Logged-in users can change their password.*
 
+:sparkles: **Password Reset**
+
+*Unauthenticate users can reset their password by email address.*
+
 :sparkles: **Edit Profile**
 
 *Logged-in users can edit their profil. User can change own city, country and picture.*
@@ -126,8 +133,6 @@ The Accounts app facilitates user registration and login functionality. Key feat
 
 ## To Do:
 
-:sparkles: Add API
-
 :sparkles: Create an app which allows drawing numbers and typing them
 
 :sparkles: Create blog where users can add posts about their achievements
@@ -140,7 +145,7 @@ The Accounts app facilitates user registration and login functionality. Key feat
 This project was created with :heart: by four-person team. Feel free to contact us:
 
 :star: Anhelina Smuhliy
-    [<img align="left" alt="linked-in" src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" />]()
+    [<img align="left" alt="linked-in" src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" />](https://www.linkedin.com/in/anhelina-smuhliy-b20200288)
 
 :star2: Jakub Jasiński
     [<img align="left" alt="linked-in" src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" />](https://www.linkedin.com/in/jasinski-jakub/)
