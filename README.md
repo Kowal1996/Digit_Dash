@@ -27,10 +27,16 @@ Project is created with:
 :sparkles: SQLite 3.42.0
 ## Screenshots
 #### Main page
-![mainPage](/static/images/mainPage.png) 
+![mainPage](/static/images/mainPage.png)
 
 #### Leaderboards
 ![leaderboard](/static/images/leaderboard.png)
+
+#### Registration
+![registration](/static/images/registration.png)
+
+#### Login
+![login](/static/images/login.png)
 
 #### Main page - Login user
 ![mainPageLoginUser](/static/images/mainPageLoginUser.png)
@@ -48,6 +54,7 @@ Project is created with:
 ![userGames](/static/images/userGames.png)
 
 #### About us
+![aboutUs](/static/images/aboutUs.png)
 ## Setup
 
 1. To download the repository use:
